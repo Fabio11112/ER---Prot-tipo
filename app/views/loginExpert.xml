@@ -1,0 +1,9 @@
+<Alloy>
+	<Window class="container">
+		    <ImageView id="imageInitial" image="/images/baleialogo/unnamed.png" />
+			<Label class="titleLabel">Login Experto</Label>
+            <TextField id="usernameField" hintText="Digite seu nome de utilizador" />
+            <TextField id="passwordField" hintText="Digite sua password" />
+            <Button id="btnLogin" onclick="click" title="LOGIN" />
+	</Window>
+</Alloy>

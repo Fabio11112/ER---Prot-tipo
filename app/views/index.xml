@@ -1,5 +1,7 @@
 <Alloy>
 	<Window class="container">
-		<Label id="label" onClick="doClick">BackOffice</Label>
+		<ImageView id="imageInitial" image="/images/baleialogo/unnamed.png" />
+		<Button id="buttonBackOffice" onClick="doClick" title="BACKOFFICE" />
+		<Button id="buttonSite" onClick="doClick2" title="SITE" />
 	</Window>
 </Alloy>

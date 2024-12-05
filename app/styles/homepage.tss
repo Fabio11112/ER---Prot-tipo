@@ -1,0 +1,15 @@
+".container": {
+	backgroundColor:"blue"
+}
+"#imageInitial":{
+top: "10%"
+}
+".welcomeLabel": {
+    font: {
+        fontSize: 24,
+        fontWeight: "bold"
+    },
+    color: "#333",
+    top: "25%",
+    textAlign: "center"
+}

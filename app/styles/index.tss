@@ -13,3 +13,23 @@
 		fontSize: 12
 	}
 }
+"#buttonBackOffice":{
+ top:"50%",
+ left:"10%",
+ width:"80%",
+ height:"8%",
+}
+
+"#buttonSite":{
+ top:"40%",
+ left:"10%",
+ width:"80%",
+ height:"8%",
+}
+
+"#imageInitial": {
+    width: Ti.UI.SIZE,
+    height: Ti.UI.SIZE,
+    top: 20,
+	visible: true
+}

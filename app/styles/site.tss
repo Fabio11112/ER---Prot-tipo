@@ -1,0 +1,20 @@
+".container": {
+	backgroundColor:"blue"
+}
+"#guestButton":{
+top:"70%",
+left: "10%",
+ width:"80%",
+ height:"8%",
+}
+"#expertButton":{
+top:"60%",
+left: "10%",
+ width:"80%",
+ height:"8%",
+}
+
+
+
+
+

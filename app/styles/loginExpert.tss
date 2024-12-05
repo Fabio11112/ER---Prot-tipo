@@ -1,0 +1,51 @@
+".container": {
+	backgroundColor:"blue"
+}
+
+".titleLabel": {
+    font: {
+        fontSize: 24,
+        fontWeight: "bold"
+    },
+    color: "#333",
+    top: "25%",
+    textAlign: "center"
+}
+"#imageInitial":{
+top: "10%"
+}
+".container": {
+	backgroundColor:"blue"
+}
+
+".titleLabel": {
+    font: {
+        fontSize: 24,
+        fontWeight: "bold"
+    },
+    color: "#333",
+    top: "25%",
+    textAlign: "center"
+}
+"#imageInitial":{
+top: "10%"
+}
+"#usernameField": {
+    width: "80%",
+    height: "5%",
+    top: "40%"
+}
+"#passwordField":{
+    width: "80%",
+    height: "5%",
+    top: "50%"
+
+}
+"#btnLogin": {
+    width: "80%",
+    height: "5%",
+    backgroundColor: "#007AFF",
+    color: "#ffffff",
+    borderRadius: 5,
+    top: "60%"
+}

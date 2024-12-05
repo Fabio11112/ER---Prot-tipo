@@ -1,0 +1,8 @@
+<Alloy>
+	<Window class="container">
+		    <ImageView id="imageInitial" image="/images/baleialogo/unnamed.png" />
+			<Label class="titleLabel">Login Convidado</Label>
+            <TextField id="usernameFieldConvidado" hintText="Digite seu nome de utilizador" />
+            <Button id="btnLogin" onclick="click" title="LOGIN" />
+	</Window>
+</Alloy>

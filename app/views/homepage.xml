@@ -1,0 +1,17 @@
+<Alloy>
+	<Window class="container">
+		<ImageView id="imageInitial" image="/images/baleialogo/unnamed.png" />
+		<Label id="welcomeLabel" text="Welcome to the Whale Reporter App" />
+        <View class="especie">
+            <View class="especie-1">
+                <Label id="especietext1" text="Lobo Marinho" />
+            </View>
+            <View class="especie-2">
+                <Label id="especietext2" text="Baleia" />
+            </View>
+            <View class="especie-3">
+                <Label id="especietext3" text="Tubarao" />
+            </View>
+        </View>
+	</Window>
+</Alloy>
