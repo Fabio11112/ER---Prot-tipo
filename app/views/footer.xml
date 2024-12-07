@@ -1,0 +1,6 @@
+<Alloy>
+    <View id="footer">
+        <Button id="button1" backgroundImage="/images/baleialogo/unnamed.png" onClick="onButtonAvistamentos" />
+        <Button id="button2" backgroundImage="/images/baleialogo/unnamed.png" onClick="onButtonEspecies" />
+    </View>
+</Alloy>

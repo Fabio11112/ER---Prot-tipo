@@ -1,0 +1,15 @@
+<Alloy>
+	<Window class="container">
+        <View id="header" class="headerStyle">
+            <Label id="headerTitle">A tua especie é: <Label id="especie" text="X"/> com <Label id="percentagem" text="Y"/>% de confiança.</Label>
+        </View>
+
+        <ImageView id="imageInitial" image="/images/baleialogo/unnamed.png" />
+        
+        <Label class="header2">aceitarSugestao?</Label>
+        <View id="botoesContainer" >
+		    <Button id="aceitar" title="Aceitar"/>
+            <Button id="recusar" title="Recusar"/>
+        </View>
+	</Window>
+</Alloy>

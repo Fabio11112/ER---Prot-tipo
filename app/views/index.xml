@@ -3,5 +3,7 @@
 		<ImageView id="imageInitial" image="/images/baleialogo/unnamed.png" />
 		<Button id="buttonBackOffice" onClick="doClick" title="BACKOFFICE" />
 		<Button id="buttonSite" onClick="doClick2" title="SITE" />
+		<Button id="buttonEspecie" onClick="doClick3" title="QUEM CLICA É GAY" />
+		<Require src="footer" />
 	</Window>
 </Alloy>

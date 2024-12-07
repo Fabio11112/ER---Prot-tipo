@@ -6,10 +6,9 @@ top: "10%"
 }
 ".welcomeLabel": {
     font: {
-        fontSize: 24,
-        fontWeight: "bold"
+        fontSize: 200,
     },
-    color: "#333",
+    color: "#ffffff",
     top: "25%",
     textAlign: "center"
 }

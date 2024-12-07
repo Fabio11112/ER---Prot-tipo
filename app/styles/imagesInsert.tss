@@ -1,0 +1,32 @@
+
+"#labelImage":{
+    top: "10%",
+    font: {
+        fontSize: "70px",
+        fontWeight: "bold"
+    },
+}
+
+".mainWindow": {
+	backgroundColor:"blue"
+}
+
+"#buttonOk":{
+    top: "25%",
+    left: "59%",
+    width: "30%",
+    height: "7%"
+}
+
+"#buttonImage":{
+    top: "25%",
+    left: "8%",
+    width: "50%",
+    height: "7%"
+}
+
+"#imagesList":{
+    top: "35%",
+    width: "100%",
+    height: "50%"
+}

@@ -1,0 +1,48 @@
+
+
+".container": {
+	backgroundColor:"blue",
+    layout: "vertical"
+}
+
+".headerStyle": {
+    backgroundColor: "#3575E0",
+    height: "20%",
+    width: "100%",
+    textAlign: "center",
+    justifyContent: "center"
+}
+
+"#headerTitle": {
+    color: "#ffffff",
+    font: {
+        fontSize: 20,
+        fontWeight: "bold"
+    },
+    textAlign: "center"
+}
+
+"#botoesContainer": {
+    layout: "horizontal",
+    justifyContent: "space-around",
+    horizontalWrap: true,
+    padding: {
+        left: 10,
+        right: 10
+    }
+}
+
+"#aceitar": {
+    left: 10
+}
+
+"#recusar": {
+    left: 10
+}
+
+".header2":{
+    font: {
+        fontSize: 20,
+        fontWeight: "bold"
+    },
+}

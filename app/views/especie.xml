@@ -1,0 +1,32 @@
+<Alloy>
+    <Window id="container">
+    <View class="container">
+        <View id="header" class="headerStyle">
+            <Label id="headerTitle">Espécies</Label>
+        </View>
+        <ScrollView id="animalContainer" layout="vertical" showVerticalScrollIndicator="true">
+            <View id="baleia" class="animalView" onClick="openAnimalDetails">
+                <ImageView class="animalImage" image="/images/baleialogo/unnamed.png" />
+                <Label class="animalLabel">Baleia</Label>
+            </View>
+            <View id="tartaruga" class="animalView" onClick="openAnimalDetails">
+                <ImageView class="animalImage" image="/images/baleialogo/unnamed.png" />
+                <Label class="animalLabel">Tartaruga</Label>
+            </View>
+            <View id="golfinho" class="animalView" onClick="openAnimalDetails">
+                <ImageView class="animalImage" image="/images/baleialogo/unnamed.png" />
+                <Label class="animalLabel">Golfinho</Label>
+            </View>
+            <View id="foca" class="animalView" onClick="openAnimalDetails">
+                <ImageView class="animalImage" image="/images/baleialogo/unnamed.png" />
+                <Label class="animalLabel">Foca</Label>
+            </View>
+            <View id="outro" class="animalView" onClick="openAnimalDetails">
+                <ImageView class="animalImage" image="/images/baleialogo/unnamed.png" />
+                <Label class="animalLabel">Outro</Label>
+            </View>
+        </ScrollView>
+    </View>
+     <Require src="footer" />
+    </Window>
+</Alloy>

@@ -1,10 +1,15 @@
 function doClick(e) {
 	//alert($.label.text);
-	Alloy.createController('backoffice').getView().open();
+	Alloy.createController('imagesInsert').getView().open();
 }
 function doClick2(e) {
 	//alert($.label.text);
 	Alloy.createController('site').getView().open();
+}
+
+function doClick3(e) {
+	//alert($.label.text);
+	Alloy.createController('especie').getView().open();
 }
 
 var mainWindow = Ti.UI.createWindow({
