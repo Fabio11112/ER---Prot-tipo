@@ -1,2 +1,5 @@
-// Arguments passed into this controller can be accessed via the `$.args` object directly or:
-const args = $.args;
+function openAnimalDetails(e) {
+    var animalName = e.source.id; // Identifica o animal pelo ID
+    alert("És um  " + animalName);
+    Alloy.createController('subespeciedetalhe').getView().open();
+}

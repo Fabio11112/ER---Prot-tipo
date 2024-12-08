@@ -30,7 +30,7 @@ top: "10%"
 "#imageInitial":{
 top: "10%"
 }
-"#usernameField": {
+"#emailField": {
     width: "80%",
     height: "5%",
     top: "40%"

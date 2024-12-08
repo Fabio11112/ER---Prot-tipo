@@ -51,12 +51,3 @@
     backgroundColor: "#dddddd"
 }
 
-".animalLabel": {
-    color: "#000",
-    font: {
-        fontSize: 14,
-        fontWeight: "bold"
-    },
-    textAlign: "center",
-    top: 5
-}

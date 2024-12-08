@@ -1,0 +1,49 @@
+"Window#container": {
+    backgroundColor: "#ffffff",
+    layout: "vertical",
+    padding: 10
+},
+".container": {
+    layout: "vertical",
+    width: Ti.UI.FILL,
+    height: Ti.UI.SIZE
+},
+".headerStyle": {
+    backgroundColor: "#f0f0f0",
+    padding: 10,
+    width: Ti.UI.FILL,
+    height: Ti.UI.SIZE,
+    textAlign: "center"
+},
+"#headerTitle1, #headerTitle2": {
+    font: {
+        fontSize: 18,
+        fontWeight: "bold"
+    },
+    color: "#333333"
+},
+".subanimalView": {
+    margin: 10,
+    padding: 10,
+    borderColor: "#cccccc",
+    borderWidth: 1,
+    borderRadius: 5
+},
+".subanimalLabel": {
+    font: {
+        fontSize: 14
+    },
+    color: "#666666"
+},
+".attributes": {
+    layout: "horizontal",
+    width: Ti.UI.FILL,
+    height: Ti.UI.SIZE,
+    marginTop: 20,
+    justifyContent: "space-around"
+},
+"#negrito": {
+    font: {
+        fontWeight: "bold"
+    }
+}

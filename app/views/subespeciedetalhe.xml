@@ -1,0 +1,38 @@
+<Alloy>
+    <Window id="container">
+        <View class="container">
+            <View id="header1" class="headerStyle">
+                <Label id="headerTitle1">Sub-Espécies nome</Label>
+            </View>
+            <View id="header2" class="headerStyle">
+                <ImageView class="subanimalLabel" image="/images/baleialogo/unnamed.png" />
+                <Label id="headerTitle2">Nome da Sub-Espécie</Label>
+            </View>
+            <View id="baleia" class="subanimalView">
+                <Label class="subanimalLabel">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam tempor dolor at sapien venenatis sodales. Vivamus venenatis ex eget elit pharetra posuere...
+                </Label>
+            </View>
+            <View class="attributes" layout="horizontal">
+                <Label>Atributos</Label>
+                <View class="attributes-category">
+                    <Label id="negrito">Categoria: </Label>
+                    <Label id="categoria">Dolphin</Label>
+                </View>
+                <View class="attributes-size">
+                    <Label id="negrito">Size: </Label>
+                    <Label id="tamanho">3cm</Label>
+                </View>
+                <View class="attributes-status">
+                    <Label id="negrito">Status: </Label>
+                    <Label id="estado">Non Indegeneous</Label>
+                </View>
+                <View class="attributes-conservation">
+                    <Label id="negrito">Conservation: </Label>
+                    <Label id="conservacao">Conservation</Label>
+                </View>
+            </View>
+        </View>
+        <Require src="footer" />
+    </Window>
+</Alloy>
