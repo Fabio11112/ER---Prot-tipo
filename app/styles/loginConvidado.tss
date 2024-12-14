@@ -1,45 +1,90 @@
 ".container": {
-	backgroundColor:"blue"
-}
-".titleLabel": {
+    backgroundColor: "#f7fafc" 
+},
+"#loginContainer": {
+    backgroundColor: "#ffffff", 
+    width: "90%", 
+    maxWidth: "400px", 
+    height: Ti.UI.SIZE, 
+    layout: "vertical", 
+    padding: "20px", 
+    top: "15%", 
+    borderRadius: "15px", 
+    shadowColor: "#000", 
+    shadowOffset: { x: 0, y: 2 }, 
+    shadowRadius: 5, 
+    shadowOpacity: 0.15, 
+    center: { x: "50%" } 
+},
+"#loginTitle": {
+    top: "10dp", 
+    textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER, 
     font: {
-        fontSize: 24,
+        fontSize: "22dp",
         fontWeight: "bold"
     },
-    color: "#333",
-    top: "25%",
-    textAlign: "center"
-}
-"#imageInitial":{
-top: "10%"
-}
-".container": {
-	backgroundColor:"blue"
-}
-
-".titleLabel": {
+    color: "#2b6cb0" 
+},
+"#loginDescription": {
+    top: "10dp", 
+    textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER, 
     font: {
-        fontSize: 24,
-        fontWeight: "bold"
+        fontSize: "16dp"
     },
-    color: "#333",
-    top: "25%",
-    textAlign: "center"
-}
-"#imageInitial":{
-top: "10%"
-}
+    color: "#4a5568" 
+},
 "#usernameFieldConvidado": {
-    width: "80%",
-    height: "5%",
-    top: "50%"
-}
-
+    top: "15dp", 
+    height: "40dp",
+    width: Ti.UI.FILL, 
+    borderStyle: Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
+    borderColor: "#cbd5e0", 
+    padding: { left: "10dp", right: "10dp" }, 
+    hintTextColor: "#a0aec0", 
+    color: "#2d3748" 
+},
+"#passwordField": {
+    top: "10dp", 
+    height: "40dp",
+    width: Ti.UI.FILL, 
+    borderStyle: Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
+    borderColor: "#cbd5e0", 
+    padding: { left: "10dp", right: "10dp" }, 
+    hintTextColor: "#a0aec0", 
+    color: "#2d3748" 
+},
 "#btnLogin": {
-    width: "80%",
-    height: "5%",
-    backgroundColor: "#007AFF",
-    color: "#ffffff",
-    borderRadius: 5,
-    top: "60%"
+    top: "20dp", 
+    height: "40dp",
+    width: "80%", 
+    backgroundColor: "#3182ce", 
+    color: "#ffffff", 
+    font: {
+        fontSize: "16dp",
+        fontWeight: "bold"
+    },
+    borderRadius: "5dp"
+},
+"#registerLink": {
+    top: "15dp", 
+    textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
+    font: {
+        fontSize: "14dp"
+    },
+    color: "#3182ce", 
+    underline: true 
+},
+"#imageInitial": {
+    width: "120dp", 
+    height: "120dp", 
+    top: "10dp", 
+    align: "center",
+    padding:"20px" 
+},
+"#mainContainer": {
+    layout: "vertical", 
+    width: Ti.UI.FILL, 
+    height: Ti.UI.SIZE, 
+    top: "70dp", 
+    align: "center"
 }
