@@ -1,7 +1,10 @@
 <Alloy>
 	<Window class="container">
-        <ImageView id="imageInitial" image="/images/baleialogo/unnamed.png" />
-		<Button id="guestButton" onClick="LoginGuestClick">CONVIDADO</Button>
-        <Button id="expertButton" title="DOMAIN EXPERT" onClick="ExpertGuestClick"/>
+		<View id="contentContainer">
+			<ImageView id="imageInitial" image="/images/baleialogo/unnamed.png" />
+			<Button id="guestButton" onClick="LoginGuestClick" title="CONVIDADO" />
+			<Button id="expertButton" onClick="ExpertGuestClick" title="DOMAIN EXPERT"/>
+		</View>
+		<Require src="footer" />
 	</Window>
 </Alloy>

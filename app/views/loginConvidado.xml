@@ -10,6 +10,7 @@
                 <Button id="btnLogin" onclick="click" title="LOGIN"/>
                 <Label id="registerLink" text="Não tem uma conta? Cadastre-se aqui." />
             </View>
-        </View>    
+        </View> 
+        <Require src="footer" />   
     </Window>
 </Alloy>

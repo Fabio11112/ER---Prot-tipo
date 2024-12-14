@@ -54,20 +54,28 @@ function fetch_Object(imagem, id, name){ {
             const imageBlob = this.responseData;
             try {
                 var view = Titanium.UI.createView({
-                    width: 120,
-                    height: 150,
+                    bottom:20,
+                    width: "100%",
+                    height: 200,
                     borderRadius: 10,
                     justifyContent: "center",
                     alignItems: "center",
                     margin: 10,
                     borderWidth: 1,
+                    borderColor: "#ccc",
+                    animalName: name, // NOME REFERENCIA EVENTO
+                    id: id,
+                    
                     
                 });
+
+                view.addEventListener('touchstart', animateAnimal);
+                view.addEventListener('touchend', resetAnimal);
                 var label1 = Ti.UI.createLabel({
                     text: name,
                     color: "#000",
                     font: {
-                        fontSize: 14,
+                        fontSize: 18,
                         fontWeight: "bold"
                     },
                     textAlign: "center",
@@ -75,8 +83,9 @@ function fetch_Object(imagem, id, name){ {
                   });
                 var imageView = Ti.UI.createImageView({
                     image: imageBlob,
-                    width: Ti.UI.FILL,
-                    height: Ti.UI.SIZE,
+                    width: 140,
+                    height: 140,
+                    borderRadius: 10
                     
                 });
                 
@@ -105,5 +114,21 @@ function fetch_Object(imagem, id, name){ {
 }
 }
 
+//TENTATIVA
+function animateAnimal(e) {
+    var view = e.source; 
+    view.animate({
+        transform: Ti.UI.create2DMatrix().scale(1.1), // AUMENTA IMAGEM
+        duration: 200 // TEMPO DE DURAÇAO
+    });
+}
+
+function resetAnimal(e) {
+    var view = e.source; 
+    view.animate({
+        transform: Ti.UI.create2DMatrix().scale(1), 
+        duration: 200
+    });
+}
 
 

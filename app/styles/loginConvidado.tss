@@ -51,7 +51,8 @@
     borderColor: "#cbd5e0", 
     padding: { left: "10dp", right: "10dp" }, 
     hintTextColor: "#a0aec0", 
-    color: "#2d3748" 
+    color: "#2d3748",
+    backgroundColor: "#ffffff"
 },
 "#btnLogin": {
     top: "20dp", 

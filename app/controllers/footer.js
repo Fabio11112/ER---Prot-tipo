@@ -11,6 +11,11 @@ function onButtonEspecies(e) {
     var especiesController = Alloy.createController('especies'); // Certifique-se de que o nome está correto
     especiesController.getView().open();
 }
+function onButtonHome(e) {
+    // Navegar para o controlador de espécies
+    var especiesController = Alloy.createController('homepage'); // Certifique-se de que o nome está correto
+    especiesController.getView().open();
+}
 
 exports.onButtonAvistamentos = onButtonAvistamentos;
 exports.onButtonEspecies = onButtonEspecies;

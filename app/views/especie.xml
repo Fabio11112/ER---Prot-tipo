@@ -1,13 +1,14 @@
 <Alloy>
-    <Window id="container">
-    <View class="container">
-        <View id="header" class="headerStyle">
-            <Label id="headerTitle">Espécies</Label>
-        </View>
-        <ScrollView id="animalContainer" layout="vertical" showVerticalScrollIndicator="true">
+    <Window id="mainContainer">
+        <View class="contentContainer">
+            <View id="header" class="headerStyle">
+                <Label id="headerTitle">Espécies</Label>
+            </View>
+            <ScrollView id="animalContainer" layout="vertical" showVerticalScrollIndicator="true">
+            </ScrollView>
 
-        </ScrollView>
-    </View>
-     <Require src="footer" />
+            
+        </View>
+        <Require src="footer" />
     </Window>
 </Alloy>

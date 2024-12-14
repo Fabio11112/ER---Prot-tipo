@@ -9,6 +9,7 @@
 					<TextField id="passwordField" hintText="Digite sua senha" passwordMask="true" />
 					<Button id="btnLogin" onclick="click" title="LOGIN"/>
 				</View>
-		</View>		
+		</View>
+        <Require src="footer" /> 		
     </Window>
 </Alloy>
