@@ -1,8 +1,15 @@
 <Alloy>
-	<Window class="container">
-		    <ImageView id="imageInitial" image="/images/baleialogo/unnamed.png" />
-			<Label class="titleLabel">Login Convidado</Label>
-            <TextField id="usernameFieldConvidado" hintText="Digite seu nome de utilizador" />
-            <Button id="btnLogin" onclick="click" title="LOGIN" />
-	</Window>
+    <Window class="container">
+        <View id="mainContainer">
+            <ImageView id="imageInitial" image="/images/baleialogo/unnamed.png" />
+            <View id="loginContainer">
+                <Label id="loginTitle" text="Bem-vindo de Volta" />
+                <Label id="loginDescription" text="Faça login para acessar o Sistema de Avistamentos." />
+                <TextField id="usernameFieldConvidado" hintText="Digite seu e-mail" />
+                <TextField id="passwordField" hintText="Digite sua senha" passwordMask="true" />
+                <Button id="btnLogin" onclick="click" title="LOGIN"/>
+                <Label id="registerLink" text="Não tem uma conta? Cadastre-se aqui." />
+            </View>
+        </View>    
+    </Window>
 </Alloy>

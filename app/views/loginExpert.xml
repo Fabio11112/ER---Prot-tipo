@@ -1,9 +1,14 @@
 <Alloy>
-	<Window class="container">
-		    <ImageView id="imageInitial" image="/images/baleialogo/unnamed.png" />
-			<Label class="titleLabel">Login Experto</Label>
-            <TextField id="emailField" hintText="Digite seu email" />
-            <TextField id="passwordField"  hintText="Digite sua password" passwordMask="true" />
-            <Button id="btnLogin" onclick="click" title="LOGIN" />
-	</Window>
+    <Window class="container">
+		<View id="mainContainer">
+				<ImageView id="imageInitial" image="/images/baleialogo/unnamed.png" />
+				<View id="loginContainer">
+					<Label id="loginTitle" text="Bem-vindo de Volta Experto" />
+					<Label id="loginDescription" text="Faça login para acessar o Sistema de Avistamentos." />
+					<TextField id="usernameFieldConvidado" hintText="Digite seu e-mail" />
+					<TextField id="passwordField" hintText="Digite sua senha" passwordMask="true" />
+					<Button id="btnLogin" onclick="click" title="LOGIN"/>
+				</View>
+		</View>		
+    </Window>
 </Alloy>
