@@ -3,11 +3,13 @@ const args = $.args;
 let test_user_id = 23;
 let mime_test = 'image/jpeg';
 let images = [];
+let count = 0;
 
 
-let url = "http://backoffice_er.test/";
+let url = "http://10.0.2.2:8000/api/";
 
 $.buttonImage.addEventListener('click', function () {
+
     Ti.Media.openPhotoGallery({
         allowMultiple: true,
         success: function (event) {
@@ -36,10 +38,16 @@ $.buttonImage.addEventListener('click', function () {
 function addImagePreview(image){
     let imageModel = 
         {
-            image: image,
+            image: image.media.text,
             user_id: test_user_id,
-            mime: mime_test
+            mime: image.media.mimeType
         };
+        // images[images[${count}]] = {
+        //     image: imageModelData
+        
+        // };
+
+    
     images.push(imageModel);
     const newImageView = Ti.UI.createImageView({
         image: image,
@@ -56,7 +64,17 @@ function addImagePreview(image){
     // Optionally store the image path or object
     //selectedImages.push(image.nativePath || image);
 }
+function createFormData(images) {
+    let formData = {};
+    images.forEach((img, index) => {
+        let file = Ti.Filesystem.getFile(img.image.nativePath);
+        formData[`file_${index}`] = file;
+    });
+    formData['user_id'] = test_user_id;
+    formData['mime'] = mime_test;
 
+    return formData;
+}
 $.buttonOk.addEventListener('click', onClicked);
 
 function onClicked(e) {
@@ -64,19 +82,24 @@ function onClicked(e) {
 	//alert($.label.text);
 	//Alloy.createController('aceitarSugestao').getView().open();
     var client = Ti.Network.createHTTPClient({
+        
         onload: function(e) {
             try {
-                if (response.data && response.data.length > 0) {
-                   console.log(response)
+                const response = this.responseText ? JSON.parse(this.responseText) : null;
+                if (response) {
+                    console.log("Resposta do servidor: ", response);
+                    alert("Imagens enviadas com sucesso: " + response.message);
+                    return;
                 }
-                else {
-                    console.log("Erro ao processar resposta!!!!!")
-                }
+                console.log("Resposta do servidor: ", response);
+                alert("Problema ao enviar as imagens: " + response.message);
+
             } catch (err) {
                 console.error("Erro ao processar resposta!!!!!", err);
             }
         },
         onerror: function(e) {
+            console.log("Exception Error caught: " + e.error);
             Ti.API.debug(e.error);
         },
         timeout: 5000 // Timeout em milissegundos
@@ -85,5 +108,16 @@ function onClicked(e) {
     console.log(url + "uploadImage");
     
     client.open("POST", url + "uploadImage");
-    client.send(images); // Enviar requisição GET
+    client.send(fromArrayToJSON(images)); // Enviar requisição GET
+}
+
+
+function fromArrayToJSON(array){
+    let json = {};
+    array.forEach((element, index) => {
+        json[`image[${index}]`] = element;
+    });
+    console.log("IMAGENS ENVIADAS\n");
+    console.log(json);
+    return json;
 }

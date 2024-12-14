@@ -3,7 +3,7 @@
 
 		<Label id="labelImage">Inserir imagens</Label>
 		<Button id="buttonImage" title="Inserir" ></Button>
-		<Button id="buttonOk" onClick="onClicked" title="OK" ></Button>
+		<Button id="buttonOk" title="OK" ></Button>
 
 		<ScrollView id="imagesList" layout="vertical" scrollType="vertical">
 
