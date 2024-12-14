@@ -2,7 +2,7 @@
 const args = $.args;
 let test_user_id = 23;
 let mime_test = 'image/jpeg';
-let images = [];
+let imagens = [];
 let count = 0;
 
 
@@ -36,19 +36,23 @@ $.buttonImage.addEventListener('click', function () {
 });
 
 function addImagePreview(image){
+
+    // Create a new ImageView 
     let imageModel = 
         {
-            image: image.media.text,
+            image: image.media,
             user_id: test_user_id,
             mime: image.media.mimeType
         };
+
+    let imageBlob = image.media;
         // images[images[${count}]] = {
         //     image: imageModelData
         
         // };
 
     
-    images.push(imageModel);
+    imagens.push(imageBlob);
     const newImageView = Ti.UI.createImageView({
         image: image,
         width: "80%",
@@ -64,17 +68,7 @@ function addImagePreview(image){
     // Optionally store the image path or object
     //selectedImages.push(image.nativePath || image);
 }
-function createFormData(images) {
-    let formData = {};
-    images.forEach((img, index) => {
-        let file = Ti.Filesystem.getFile(img.image.nativePath);
-        formData[`file_${index}`] = file;
-    });
-    formData['user_id'] = test_user_id;
-    formData['mime'] = mime_test;
 
-    return formData;
-}
 $.buttonOk.addEventListener('click', onClicked);
 
 function onClicked(e) {
@@ -105,10 +99,23 @@ function onClicked(e) {
         timeout: 5000 // Timeout em milissegundos
     });
 
+
+    let requestObject = {};
+
+    requestObject['user_id'] = test_user_id;
+    requestObject['mime'] = mime_test;
+    
+    imagens.forEach((image, index) => {
+        requestObject[`image[${index}]`] = image;
+    });
+
+
+
     console.log(url + "uploadImage");
+
     
     client.open("POST", url + "uploadImage");
-    client.send(fromArrayToJSON(images)); // Enviar requisição GET
+    client.send(requestObject); // Enviar requisição GET
 }
 
 
@@ -121,3 +128,5 @@ function fromArrayToJSON(array){
     console.log(json);
     return json;
 }
+
+
