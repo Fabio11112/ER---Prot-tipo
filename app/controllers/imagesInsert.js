@@ -1,6 +1,6 @@
 // Arguments passed into this controller can be accessed via the `$.args` object directly or:
 const args = $.args;
-let test_user_id = 23;
+let test_user_id = 1;
 let mime_test = 'image/jpeg';
 let imagens = [];
 let count = 0;
@@ -16,7 +16,7 @@ $.buttonImage.addEventListener('click', function () {
             console.log(event);
             if (event.images) {
 
-                event.images.forEach(image =>  addImagePreview(image));
+                event.images.forEach(image => addImagePreview(image));
                     
             }
             else{
