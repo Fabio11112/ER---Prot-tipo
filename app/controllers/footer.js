@@ -8,14 +8,15 @@ function onButtonAvistamentos(e) {
 // Função chamada quando o botão de espécies é clicado
 function onButtonEspecies(e) {
     // Navegar para o controlador de espécies
-    var especiesController = Alloy.createController('especies'); // Certifique-se de que o nome está correto
+    var especiesController = Alloy.createController('especie'); // Certifique-se de que o nome está correto
     especiesController.getView().open();
 }
 function onButtonHome(e) {
     // Navegar para o controlador de espécies
-    var especiesController = Alloy.createController('homepage'); // Certifique-se de que o nome está correto
-    especiesController.getView().open();
+    var homeController = Alloy.createController('homepage'); // Certifique-se de que o nome está correto
+    homeController.getView().open();
 }
 
 exports.onButtonAvistamentos = onButtonAvistamentos;
 exports.onButtonEspecies = onButtonEspecies;
+exports.onButtonHome = onButtonHome;
