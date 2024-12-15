@@ -34,20 +34,20 @@
     color: "#4a5568" 
 },
 "#usernameFieldConvidado": {
-    top: "15dp", 
-    height: "40dp",
-    width: Ti.UI.FILL, 
-    borderStyle: Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
+     top: "15dp", 
+     height: "40dp",
+     width: Ti.UI.FILL, 
+//     borderStyle: Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
     borderColor: "#cbd5e0", 
     padding: { left: "10dp", right: "10dp" }, 
     hintTextColor: "#a0aec0", 
     color: "#2d3748" 
-},
+ },
 "#passwordField": {
     top: "10dp", 
     height: "40dp",
     width: Ti.UI.FILL, 
-    borderStyle: Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
+//    borderStyle: Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
     borderColor: "#cbd5e0", 
     padding: { left: "10dp", right: "10dp" }, 
     hintTextColor: "#a0aec0", 
