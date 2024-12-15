@@ -1,0 +1,45 @@
+".container": {
+	backgroundColor:"#f7fafc"
+}
+
+"Label": {
+	width: Ti.UI.SIZE,
+	height: Ti.UI.SIZE,
+	color: "#000"
+}
+
+"#label": {
+	font: {
+		fontSize: 12
+	}
+}
+
+"#buttonSite, #buttonBackOffice, #buttonEspecie": {
+    top: "100px", 
+    height: "40dp",
+    width: "80%", 
+    backgroundColor: "#3182ce", 
+    color: "#ffffff", 
+    font: {
+        fontSize: "16dp",
+        fontWeight: "bold"
+    },
+    borderRadius: "5dp"
+}
+
+"#imageInitial": {
+    width: "120dp", 
+    height: "120dp", 
+    top: "10dp", 
+	bottom: "100px",
+    align: "center",
+    padding:"20px" 
+}
+,
+"#mainContainer": {
+    layout: "vertical", 
+    width: Ti.UI.FILL, 
+    height: Ti.UI.SIZE, 
+    top: "70dp", 
+    align: "center"
+}

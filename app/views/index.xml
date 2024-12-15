@@ -1,11 +1,17 @@
 <Alloy>
-	<Window class="container">
-		<View id="mainContainer">
-			<ImageView id="imageInitial" image="/images/baleialogo/unnamed.png" />
-			<Button id="buttonBackOffice" onClick="doClick" title="BACKOFFICE" />
-			<Button id="buttonSite" onClick="doClick2" title="SITE" />
-			<Button id="buttonEspecie" onClick="doClick3" title="CATALOGO DE AVISTAMENTOS" />
-		</View>	
-		<Require src="footer" />
-	</Window>
+    <Window class="container">
+        <View id="mainContainer">
+            <ImageView id="imageInitial" image="/images/baleialogo/unnamed.png" />
+            <View id="loginContainer">
+                <Label id="loginTitle" text="Bem-vindo de Volta" />
+                <Label id="loginDescription" text="Faça login para acessar o Sistema de Avistamentos." />
+                <TextField id="usernameFieldConvidado" hintText="Digite seu e-mail" />
+                <TextField id="passwordField" hintText="Digite sua senha" passwordMask="true" />
+                <Button id="btnLogin" onclick="click" title="LOGIN"/>
+				<Button id="btnConvidado" onclick="click" title="CONVIDADO"/>
+                <Label id="registerLink" text="Não tem uma conta? Cadastre-se aqui." />
+            </View>
+        </View> 
+        <Require src="footer" />   
+    </Window>
 </Alloy>

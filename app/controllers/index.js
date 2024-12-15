@@ -1,30 +1,35 @@
-function doClick(e) {
-	//alert($.label.text);
-	Alloy.createController('imagesInsert').getView().open();
-}
-function doClick2(e) {
-	//alert($.label.text);
-	Alloy.createController('site').getView().open();
-}
+//LINK de registro
+$.registerLink.addEventListener('click', function () {
+    Alloy.createController('homepage').getView().open();
+});
+$.registerLink.addEventListener('touchstart', function () {
+    $.registerLink.textDecoration = 'underline'; // Aplica sublinhado
+});
 
-function doClick3(e) {
-	//alert($.label.text);
-	Alloy.createController('especie').getView().open();
-}
+$.registerLink.addEventListener('touchend', function () {
+    $.registerLink.textDecoration = 'none'; // Remove sublinhado
+});
 
-var mainWindow = Ti.UI.createWindow({
-    backgroundColor: '#ffffff',
-    layout: 'vertical' 
+//Quando eé convidado passa logo para a pagina de seleçao
+$.btnConvidado.addEventListener('click', function () {
+    Alloy.createController('homepage').getView().open();
 });
 
 
-var imageView = Ti.UI.createImageView({
-    image: 'images/baleialogo/unnamed.png', 
-    width: '80%', 
-    height: Ti.UI.SIZE, 
-    top: 20 
+$.btnLogin.addEventListener('click', function () {
+    var username = $.usernameFieldConvidado.value.trim();
+    var password = $.passwordField.value.trim();
+
+    if (username === 'xico' && password === 'xico') {
+        alert('Login bem-sucedido!');
+        Alloy.createController('areaDeVisuali').getView().open();
+    } else {
+        alert('Usuário não existente!');
+    }
 });
 
+
+$.index.open();
 
 mainWindow.add(imageView);
 //$.imageInitial.image = "../app/assets/android/images/res-long-land-baleia/unnamed.png";
