@@ -1,12 +1,14 @@
 
 $.homepage.open();
-var args = arguments[0] || {};
-if(args = {}){
-	args = {username: 'convidado'};
-}
+var args = $.args;
+var utilizador = args.utilizador || {};
+
+console.log("utilizador homepage" + JSON.stringify(utilizador));
+
 
 var welcome = $.welcomeLabel;
-welcome.text = "Bem-vindo, " + args.username + "!";
+welcome.text = "Bem-vindo, ";
+welcome.text += (Object.keys(utilizador).length === 0) ? 'convidado' : utilizador.user.userable.user.name;
 
 
 function doClick(e) {

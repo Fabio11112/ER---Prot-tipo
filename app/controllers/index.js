@@ -29,8 +29,9 @@ $.btnLogin.addEventListener('click', function () {
 
             if(e.success){
                 alert('Login bem-sucedido!');
-                var nextController = Alloy.createController('homepage', {utilizador: e}).getView(); 
-                $.window.add(nextController);
+                let utilizadorObject = JSON.parse(e.source.responseData.text);
+                console.log("Utilizador\n" + e.source.responseData.text);
+                Alloy.createController('homepage', {utilizador: utilizadorObject}).getView().open(); 
             }
             else{
                 alert('Problema ao fazer login:' + e.error);
@@ -38,7 +39,8 @@ $.btnLogin.addEventListener('click', function () {
         },
         onerror : function(e) {
             Ti.API.debug(e.error);
-            alert('Problema ao fazer login:' + e.error);
+            alert('Problema ao fazer login onerror:' + JSON.stringify(e.source.responseDictionary));
+            console.log(JSON.stringify(e));
         },
         timeout : 5000  
     });
@@ -47,6 +49,8 @@ $.btnLogin.addEventListener('click', function () {
     login['email'] = email;
     login['password'] = password;
     alert(login);
+
+    client.setRequestHeader("Content-Type", "application/json");
     client.open("POST", url + "api/login");
     client.send(JSON.stringify(login));          
 
