@@ -11,6 +11,7 @@
 				<Button id="btnConvidado" onclick="click" title="CONVIDADO"/>
                 <Label id="registerLink" text="Não tem uma conta? Cadastre-se aqui." />
             </View>
-        </View> 
+        </View>
+        <Require src="footer" /> 
     </Window>
 </Alloy>

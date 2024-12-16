@@ -57,10 +57,11 @@ function addImagePreview(image){
     const newImageView = Ti.UI.createImageView({
         image: image,
         width: "80%",
-        height: 100,
+        height: 170,
         borderColor: '#000',
         borderWidth: 1,
-        left: "10%"
+        left: "10%",
+        top:"30px"
     });
 
     // Add the ImageView to the ScrollView

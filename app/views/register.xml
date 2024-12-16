@@ -1,0 +1,21 @@
+<Alloy>
+    <Window class="container">
+        <View id="contentContainer">
+        <ImageView id="imageInitial" image="/images/baleialogo/unnamed.png" />
+            <View id="loginContainer">
+                <Label id="formTitle" text="Bem-vindo ao Espaço de Registo" />
+
+                    <Label id="nomeLabel" text="Nome"/>
+                    <TextField id="nameField" hintText="Digite seu nome" />
+
+                    <Label id="emailLabel" text="Email"/>
+                    <TextField id="emailField" hintText="Digite seu email" keyboardType="email" />
+
+                    <Label id="senhaLabel" text="Senha"/>
+                    <TextField id="passwordField" hintText="Digite sua senha" passwordMask="true" />
+                    
+                <Button  id="registerButton" title="Registrar" />
+            </View>
+        </View>
+    </Window>
+</Alloy>

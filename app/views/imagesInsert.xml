@@ -1,14 +1,13 @@
 <Alloy>
 	<Window class="mainWindow">
-
-		<Label id="labelImage">Inserir imagens</Label>
-		<Button id="buttonImage" title="Inserir" ></Button>
-		<Button id="buttonOk" title="OK" ></Button>
-
-		<ScrollView id="imagesList" layout="vertical" scrollType="vertical">
-
-		</ScrollView>
-
-
+		<View id="contentContainer">
+			<ImageView id="imageInitial" image="/images/baleialogo/unnamed.png" />
+			<Label id="labelImage">Inserir imagens</Label>
+			<Button id="buttonImage" title="INSERIR" ></Button>
+			<Button id="buttonOk" title="SUBMETER" ></Button>
+			<ScrollView id="imagesList" layout="vertical" scrollType="vertical">
+			</ScrollView>
+		</View>
+		<Require src="footer" />
 	</Window>
 </Alloy>

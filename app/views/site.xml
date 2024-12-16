@@ -5,6 +5,6 @@
 			<Button id="guestButton" onClick="LoginGuestClick" title="CONVIDADO" />
 			<Button id="expertButton" onClick="ExpertGuestClick" title="DOMAIN EXPERT"/>
 		</View>
-		<Require src="footer" />
+		<Require src="footer"/>
 	</Window>
 </Alloy>

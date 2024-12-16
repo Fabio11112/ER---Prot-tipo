@@ -1,0 +1,81 @@
+".container": {
+    backgroundColor: "#f7f9fc"
+}
+
+"#formTitle": {
+    top: "10dp", 
+    textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER, 
+    font: {
+        fontSize: "22dp",
+        fontWeight: "bold"
+    },
+    color: "#2b6cb0"
+}
+
+
+"#nomeLabel, #emailLabel, #senhaLabel": {
+    font: {
+        fontSize: "16dp",
+        fontWeight: "bold"
+    },
+    color: "#333",
+    marginBottom: "200px"
+}   
+
+"#submitButton": {
+    top: "50%",
+    height: "40dp",
+    width: "80%",
+    backgroundColor: "#3182ce",
+    color: "#ffffff",
+    font: {
+        fontSize: "16dp",
+        fontWeight: "bold"
+    },
+    borderRadius: "5dp",
+    alignSelf: "center"
+}
+
+"#nameField, #emailField, #passwordField": {
+    height: "40dp",
+    width: Ti.UI.FILL, 
+    borderColor: "#cbd5e0", 
+    padding: { left: "60dp", right: "60dp" }, 
+    hintTextColor: "#a0aec0", 
+    color: "#2d3748", 
+    top:"500px"
+ }
+
+"#contentContainer": {
+    backgroundColor: "#ffffff", 
+    width: "90%", 
+    height: Ti.UI.SIZE, 
+    layout: "vertical", 
+    padding: "20px",
+    shadowColor: "#000",
+    shadowRadius: 5
+}
+
+"#imageInitial": {
+    width: "120dp",
+    height: "120dp",
+    top: "30dp",
+    bottom: "100px",
+    alignSelf: "center"
+}
+
+"#loginContainer": {
+    backgroundColor: "#ffffff", 
+    width: "90%", 
+    maxWidth: "400px", 
+    height: Ti.UI.SIZE, 
+    layout: "vertical", 
+    padding: "20px", 
+    top: "15%", 
+    borderRadius: "15px", 
+    shadowColor: "#000", 
+    shadowOffset: { x: 0, y: 2 }, 
+    shadowRadius: 5, 
+    shadowOpacity: 0.15, 
+    center: { x: "50%" } 
+}

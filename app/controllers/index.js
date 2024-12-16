@@ -3,7 +3,7 @@
 var url = "https://wave-labs.org/";
 
 $.registerLink.addEventListener('click', function () {
-    Alloy.createController('homepage').getView().open();
+    Alloy.createController('register').getView().open();
 });
 $.registerLink.addEventListener('touchstart', function () {
     $.registerLink.textDecoration = 'underline'; // Aplica sublinhado
