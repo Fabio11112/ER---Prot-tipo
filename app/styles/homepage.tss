@@ -1,13 +1,13 @@
 ".container": {
 	backgroundColor:"#f7fafc"
 },
-"#imageInitial": {
-    width: Ti.UI.FILL, 
+"#userImage": { 
+    top: "10%",
     height: "500px", 
     borderRadius: "10px",
 },
 "#welcomeLabel": {
-    top: "25%",
+    top: "15%",
     textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
     font: {
         fontSize: "22dp",

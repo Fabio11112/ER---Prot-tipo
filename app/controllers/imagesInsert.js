@@ -7,6 +7,7 @@ let count = 0;
 
 
 let url = "http://10.0.2.2:8000/api/";
+let urlAI = "http://wave-labs.org/api/ai-detection";
 
 $.buttonImage.addEventListener('click', function () {
 
@@ -17,7 +18,7 @@ $.buttonImage.addEventListener('click', function () {
             if (event.images) {
 
                 event.images.forEach(image => addImagePreview(image));
-                    
+
             }
             else{
                 label = Ti.UI.createLabel({
@@ -71,6 +72,9 @@ function addImagePreview(image){
 
 $.buttonOk.addEventListener('click', onClicked);
 
+
+
+
 function onClicked(e) {
     console.log("CLICKED!!!\n");
 	//alert($.label.text);
@@ -99,23 +103,57 @@ function onClicked(e) {
         timeout: 5000 // Timeout em milissegundos
     });
 
+    sugestaoAI(imagens[0]);
+    // let requestObject = {};
+
+    // requestObject['user_id'] = test_user_id;
+    // requestObject['mime'] = mime_test;
+    
+    // imagens.forEach((image, index) => {
+    //     requestObject[`image[${index}]`] = image;
+    // });
+
+
+
+    // console.log(url + "uploadImage");
+
+    
+    // client.open("POST", url + "uploadImage");
+    // client.send(requestObject); // Enviar requisição GET
+}
+
+function sugestaoAI($image){
+    var client = Ti.Network.createHTTPClient({
+        onload:function(e){
+            try{
+                if (response) {
+                    console.log("Resposta da IA: ", response);
+                    alert("Imagens enviadas com sucesso à IA: " + response.message);
+                    return;
+                }
+                console.log("Resposta da IA: ", response);
+                alert("Problema ao enviar as imagens à IA: " + response.message);
+
+                const response = this.responseText ? JSON.parse(this.responseText) : null;
+            }catch(err){
+                console.error("Erro ao processar resposta da IA!!!!!", err);
+            }
+
+        },
+        onerror:function(e){
+            console.log("Exception Error caught AI: " + e.error);
+            Ti.API.debug(e.error);
+        },
+        timeout: 5000
+    });
 
     let requestObject = {};
 
-    requestObject['user_id'] = test_user_id;
-    requestObject['mime'] = mime_test;
-    
-    imagens.forEach((image, index) => {
-        requestObject[`image[${index}]`] = image;
-    });
+    requestObject['model_id'] = 1;
+    requestObject['image'] = $image;
 
-
-
-    console.log(url + "uploadImage");
-
-    
-    client.open("POST", url + "uploadImage");
-    client.send(requestObject); // Enviar requisição GET
+    client.open("POST", urlAI);
+    client.send(requestObject);
 }
 
 

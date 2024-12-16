@@ -1,10 +1,10 @@
 <Alloy>
     <Window class="container">
         <View id="contentContainer">
-            <ImageView id="imageInitial" image="/images/homeImg/tartaruga.jpg" />
-            <Label id="welcomeLabel" text="Bem-vindo ao Sistema de Avistamentos" />
-            <Label id="descriptionLabel" text="Gerencie e registre avistamentos de espécies marinhas de forma fácil e intuitiva. Tenha todas as informações necessárias à sua disposição." />
-            <Button id="avistamentos" onClick="doClick" title="Ir para Avistamentos"/>
+            <ImageView id="userImage" image="/images/user/user.png" />
+            <Label id="welcomeLabel"/>
+            <Label id="descriptionLabel" text="Insira imagens das espécies avistadas da sua embarcação e descobra que espécie é!"/>
+            <Button id="avistamentos" onClick="doClick" title="Ir para Inserir Avistamentos"/>
             <Label id="footerLabel" text="© 2024 Sistema de Avistamentos. Todos os direitos reservados.\nPolítica de Privacidade | Termos de Uso" />
         </View>
 		<Require src="footer" />

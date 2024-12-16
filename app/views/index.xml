@@ -12,6 +12,5 @@
                 <Label id="registerLink" text="Não tem uma conta? Cadastre-se aqui." />
             </View>
         </View> 
-        <Require src="footer" />   
     </Window>
 </Alloy>

@@ -1,4 +1,7 @@
 //LINK de registro
+
+var url = "https://wave-labs.org/";
+
 $.registerLink.addEventListener('click', function () {
     Alloy.createController('homepage').getView().open();
 });
@@ -17,15 +20,36 @@ $.btnConvidado.addEventListener('click', function () {
 
 
 $.btnLogin.addEventListener('click', function () {
-    var username = $.usernameFieldConvidado.value.trim();
+
+    var email = $.usernameFieldConvidado.value.trim();
     var password = $.passwordField.value.trim();
 
-    if (username === 'xico' && password === 'xico') {
-        alert('Login bem-sucedido!');
-        Alloy.createController('areaDeVisuali').getView().open();
-    } else {
-        alert('Usuário não existente!');
-    }
+    var client = Ti.Network.createHTTPClient({
+        onload : function(e) {
+
+            if(e.success){
+                alert('Login bem-sucedido!');
+                var nextController = Alloy.createController('homepage', {utilizador: e}).getView(); 
+                $.window.add(nextController);
+            }
+            else{
+                alert('Problema ao fazer login:' + e.error);
+            }       
+        },
+        onerror : function(e) {
+            Ti.API.debug(e.error);
+            alert('Problema ao fazer login:' + e.error);
+        },
+        timeout : 5000  
+    });
+
+    let login = {};
+    login['email'] = email;
+    login['password'] = password;
+    alert(login);
+    client.open("POST", url + "api/login");
+    client.send(JSON.stringify(login));          
+
 });
 
 
