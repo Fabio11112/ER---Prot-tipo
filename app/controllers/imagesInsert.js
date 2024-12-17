@@ -61,7 +61,7 @@ function addImagePreview(image){
     const newImageView = Ti.UI.createImageView({
         image: image,
         width: "80%",
-        height: 170,
+        height: "20%",
         borderColor: '#000',
         borderWidth: 1,
         left: "10%",
@@ -191,7 +191,6 @@ if (Object.keys(user).length === 0) {
         text: 'Convidado',
         color: '#000',
         font: { fontSize: 18 },
-        top: 50
     });
     mainView.add(labelConvidado);
 
@@ -202,24 +201,15 @@ if (Object.keys(user).length === 0) {
         text: 'Usuário Autenticado',
         color: '#000',
         font: { fontSize: 18 },
-        top: 50
+
     });
     mainView.add(labelAutenticado);
 
-    var btnMetadados = Ti.UI.createButton({
-        title: 'Abrir Formulário de Metadados',
-        top: 20
-    });
-    mainView.add(btnMetadados);
-
-    // Evento do botão
-    btnMetadados.addEventListener('click', function() {
         formularioMetadados();
-    });
-}
 
+}
 function formularioMetadados() {
-    var formView = Ti.UI.createWindow({
+    var formView = Ti.UI.ScrollView({
         backgroundColor: '#f8f8f8',
         layout: 'vertical',
         title: 'Formulário de Metadados'
