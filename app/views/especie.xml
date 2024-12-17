@@ -4,11 +4,8 @@
             <View id="header" class="headerStyle">
                 <Label id="headerTitle">Espécies</Label>
             </View>
-            <ScrollView id="animalContainer" layout="vertical" showVerticalScrollIndicator="true">
-            </ScrollView>
-
-            
-        </View>
+            <ScrollView id="animalContainer" layout="vertical" showVerticalScrollIndicator="true"/>
+        </View>    
         <Require src="footer" />
     </Window>
 </Alloy>

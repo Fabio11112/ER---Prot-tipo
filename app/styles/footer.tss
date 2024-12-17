@@ -3,7 +3,10 @@
     height: "8%", 
     backgroundColor: "#3575E0", 
     borderRadius: "60px 60px 0px 0px",
-    bottom: 0
+    bottom: 0,
+    position: "fixed",
+    left: 0, 
+    zIndex: 10
 },
 
 "#button1": {

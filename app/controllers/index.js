@@ -2,6 +2,10 @@
 
 var url = "https://wave-labs.org/";
 
+let responseText = e.source.responseData.text; 
+let utilizadorObject = JSON.parse(responseText);
+
+
 $.registerLink.addEventListener('click', function () {
     Alloy.createController('register').getView().open();
 });

@@ -2,12 +2,10 @@
     <Window id="mainContainer">
         <View class="contentContainer">
             <View id="header" class="headerStyle">
-                <Label id="headerTitle">Detalhes</Label>
+                <Label id="headerTitle">Detalhes da Especie</Label>
             </View>
             <ScrollView id="animalContainer" layout="vertical" showVerticalScrollIndicator="true">
             </ScrollView>
-
-            
         </View>
         <Require src="footer" />
     </Window>

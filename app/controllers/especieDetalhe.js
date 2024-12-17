@@ -54,7 +54,7 @@ function fetch_Object(imagem, id, name, description, curiosity) {
     var view = Titanium.UI.createView({
         bottom: 20,
         width: "100%",
-        height: 250,
+        height: "83%",
         borderRadius: 10,
         justifyContent: "center",
         alignItems: "center",
@@ -72,7 +72,7 @@ function fetch_Object(imagem, id, name, description, curiosity) {
         color: "#000",
         font: { fontSize: 18, fontWeight: "bold" },
         textAlign: "center",
-        top: 5,
+        top: 15,
     });
 
     var labelDescription = Ti.UI.createLabel({
@@ -80,7 +80,7 @@ function fetch_Object(imagem, id, name, description, curiosity) {
         color: "#555",
         font: { fontSize: 14 },
         textAlign: "center",
-        top: 50,
+        top: "10%",
         left: 10,
         right: 10,
     });
@@ -90,17 +90,17 @@ function fetch_Object(imagem, id, name, description, curiosity) {
         color: "#777",
         font: { fontSize: 14, fontStyle: "italic" },
         textAlign: "center",
-        top: 100,
+        top: "40%",
         left: 10,
         right: 10,
     });
 
     var imageView = Ti.UI.createImageView({
         image: imagem_especie,
-        width: 140,
-        height: 140,
+        width: 180,
+        height: 180,
         borderRadius: 10,
-        top: 130,
+        bottom: 100
     });
 
     view.add(labelName);
