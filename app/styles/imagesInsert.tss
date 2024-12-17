@@ -7,9 +7,9 @@
     },
 }
 
-".mainWindow": {
-	backgroundColor:"#f7fafc"
-}
+// ".mainWindow": {
+// 	backgroundColor:"#f7fafc"
+// }
 
 
 "#buttonImage, #buttonOk":{

@@ -25,19 +25,20 @@ $.btnLogin.addEventListener('click', function () {
     var password = $.passwordField.value.trim();
 
     var client = Ti.Network.createHTTPClient({
-        onload : function(e) {
+        onload: function(e) {
 
             if(e.success){
                 alert('Login bem-sucedido!');
                 let utilizadorObject = JSON.parse(e.source.responseData.text);
                 console.log("Utilizador\n" + e.source.responseData.text);
-                Alloy.createController('homepage', {utilizador: utilizadorObject}).getView().open(); 
+                Titanium.App.Properties.setString("utilizador", JSON.stringify(utilizadorObject));
+                Alloy.createController('homepage').getView().open(); 
             }
             else{
                 alert('Problema ao fazer login:' + e.error);
             }       
         },
-        onerror : function(e) {
+        onerror: function(e) {
             Ti.API.debug(e.error);
             alert('Problema ao fazer login onerror:' + JSON.stringify(e.source.responseDictionary));
             console.log(JSON.stringify(e));
@@ -59,9 +60,7 @@ $.btnLogin.addEventListener('click', function () {
 
 $.index.open();
 
-mainWindow.add(imageView);
+// $.mainContainer.add(imageView);
 //$.imageInitial.image = "../app/assets/android/images/res-long-land-baleia/unnamed.png";
 
-mainWindow.open();
-
-$.index.open();
+// $.mainContainerr.open();

@@ -5,10 +5,10 @@ let mime_test = 'image/jpeg';
 let imagens = [];
 let count = 0;
 
-// var user = args.user;
-// if((Object.keys(utilizador).length === 0))
-// Ti.API.info("User: " + user);
-// console.log();
+var user = JSON.parse(Titanium.App.Properties.getString("utilizador")) || {};
+console.log("User: " + JSON.stringify(user));
+
+
 
 let url = "http://10.0.2.2:8000/api/";
 let urlAI = "http://wave-labs.org/api/ai-detection/";
@@ -177,4 +177,125 @@ function fromArrayToJSON(array){
     return json;
 }
 
+
+var mainView = Ti.UI.createView({
+    layout: 'vertical',
+    backgroundColor: '#f8f8f8'
+});
+
+// Verificação do usuário
+if (Object.keys(user).length === 0) {
+    console.log("Convidado");
+
+    var labelConvidado = Ti.UI.createLabel({
+        text: 'Convidado',
+        color: '#000',
+        font: { fontSize: 18 },
+        top: 50
+    });
+    mainView.add(labelConvidado);
+
+} else {
+    console.log("User autenticado");
+
+    var labelAutenticado = Ti.UI.createLabel({
+        text: 'Usuário Autenticado',
+        color: '#000',
+        font: { fontSize: 18 },
+        top: 50
+    });
+    mainView.add(labelAutenticado);
+
+    var btnMetadados = Ti.UI.createButton({
+        title: 'Abrir Formulário de Metadados',
+        top: 20
+    });
+    mainView.add(btnMetadados);
+
+    // Evento do botão
+    btnMetadados.addEventListener('click', function() {
+        formularioMetadados();
+    });
+}
+
+function formularioMetadados() {
+    var formView = Ti.UI.createWindow({
+        backgroundColor: '#f8f8f8',
+        layout: 'vertical',
+        title: 'Formulário de Metadados'
+    });
+
+    // Elementos do formulário
+    var labelVento = Ti.UI.createLabel({ text: 'Escala do Vento:', top: 20, left: 10 });
+    var escalaVento = Ti.UI.createTextField({
+        hintText: 'Digite a escala do vento',
+        borderStyle: Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
+        width: '80%', top: 5
+    });
+
+    var labelEspecies = Ti.UI.createLabel({ text: 'Número de Espécies Observadas:', top: 20, left: 10 });
+    var numEspecies = Ti.UI.createTextField({
+        hintText: 'Digite o número',
+        keyboardType: Ti.UI.KEYBOARD_NUMBER_PAD,
+        borderStyle: Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
+        width: '80%', top: 5
+    });
+
+    var labelCrias = Ti.UI.createLabel({ text: 'Número de Crias (Bebés):', top: 20, left: 10 });
+    var numCrias = Ti.UI.createTextField({
+        hintText: 'Digite o número',
+        keyboardType: Ti.UI.KEYBOARD_NUMBER_PAD,
+        borderStyle: Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
+        width: '80%', top: 5
+    });
+
+    var labelBarco = Ti.UI.createLabel({ text: 'Tipo de Barco:', top: 20, left: 10 });
+    var tipoBarco = Ti.UI.createTextField({
+        hintText: 'Digite o tipo de barco',
+        borderStyle: Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
+        width: '80%', top: 5
+    });
+
+    var labelComportamento = Ti.UI.createLabel({ text: 'Comportamento das Espécies:', top: 20, left: 10 });
+    var comportamento = Ti.UI.createTextArea({
+        hintText: 'Descreva o comportamento das espécies',
+        borderStyle: Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
+        width: '80%', top: 5, height: 100
+    });
+
+    var labelData = Ti.UI.createLabel({ text: 'Data de Início:', top: 20, left: 10 });
+    var dataAtual = new Date();
+    var dataInicio = Ti.UI.createTextField({
+        value: dataAtual.toLocaleString(),
+        editable: false,
+        borderStyle: Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
+        width: '80%', top: 5
+    });
+
+    var btnEnviar = Ti.UI.createButton({ title: 'Enviar', top: 20 });
+    btnEnviar.addEventListener('click', function() {
+        alert('Formulário Enviado com Sucesso!');
+        formView.close();
+    });
+
+    // Adicionando elementos ao formulário
+    formView.add(labelVento);
+    formView.add(escalaVento);
+    formView.add(labelEspecies);
+    formView.add(numEspecies);
+    formView.add(labelCrias);
+    formView.add(numCrias);
+    formView.add(labelBarco);
+    formView.add(tipoBarco);
+    formView.add(labelComportamento);
+    formView.add(comportamento);
+    formView.add(labelData);
+    formView.add(dataInicio);
+    formView.add(btnEnviar);
+
+    // Abrindo o formulário
+    formView.open();
+}
+
+$.formMeta.add(mainView);
 

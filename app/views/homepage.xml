@@ -1,6 +1,8 @@
 <Alloy>
     <Window class="container">
         <View id="contentContainer">
+
+            <Button id="logout" onClick="logout" title="Logout"></Button>
             <ImageView id="userImage" image="/images/user/user.png" />
             <Label id="welcomeLabel"/>
             <Label id="descriptionLabel" text="Insira imagens das espécies avistadas da sua embarcação e descobra que espécie é!"/>

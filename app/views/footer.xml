@@ -1,6 +1,7 @@
 <Alloy>
     <View id="footer">
         <Button id="button1" backgroundImage="/images/footerlogo/metadatabtn.png" onClick="onButtonAvistamentos" />
+
         <Button id="button2" backgroundImage="/images/footerlogo/binocularsbtn.png" onClick="onButtonEspecies" />
         <Button id="button3" backgroundImage="/images/footerlogo/homebtn.png" onClick="onButtonHome" />
     </View>
