@@ -212,7 +212,8 @@ function formularioMetadados() {
     var formView = Ti.UI.ScrollView({
         backgroundColor: '#f8f8f8',
         layout: 'vertical',
-        title: 'Formulário de Metadados'
+        width: '100%',
+        showVerticalScrollIndicator: 'true'
     });
 
     // Elementos do formulário
