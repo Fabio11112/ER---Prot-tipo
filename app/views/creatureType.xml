@@ -2,7 +2,8 @@
     <Window id="mainContainer">
         <View class="contentContainer">
             <View id="header" class="headerStyle">
-                <Label id="headerTitle">Detalhes</Label>
+                <Label id="headerTitle">Sub Espécies</Label>
+
             </View>
             <ScrollView id="animalContainer" layout="vertical" showVerticalScrollIndicator="true">
             </ScrollView>

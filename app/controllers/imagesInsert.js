@@ -5,9 +5,13 @@ let mime_test = 'image/jpeg';
 let imagens = [];
 let count = 0;
 
+// var user = args.user;
+// if((Object.keys(utilizador).length === 0))
+// Ti.API.info("User: " + user);
+// console.log();
 
 let url = "http://10.0.2.2:8000/api/";
-let urlAI = "http://wave-labs.org/api/ai-detection";
+let urlAI = "http://wave-labs.org/api/ai-detection/";
 
 $.buttonImage.addEventListener('click', function () {
 
@@ -80,29 +84,31 @@ function onClicked(e) {
     console.log("CLICKED!!!\n");
 	//alert($.label.text);
 	//Alloy.createController('aceitarSugestao').getView().open();
-    var client = Ti.Network.createHTTPClient({
-        
-        onload: function(e) {
-            try {
-                const response = this.responseText ? JSON.parse(this.responseText) : null;
-                if (response) {
-                    console.log("Resposta do servidor: ", response);
-                    alert("Imagens enviadas com sucesso: " + response.message);
-                    return;
-                }
-                console.log("Resposta do servidor: ", response);
-                alert("Problema ao enviar as imagens: " + response.message);
 
-            } catch (err) {
-                console.error("Erro ao processar resposta!!!!!", err);
-            }
-        },
-        onerror: function(e) {
-            console.log("Exception Error caught: " + e.error);
-            Ti.API.debug(e.error);
-        },
-        timeout: 5000 // Timeout em milissegundos
-    });
+
+    // var client = Ti.Network.createHTTPClient({
+        
+    //     onload: function(e) {
+    //         try {
+    //             const response = this.responseText ? JSON.parse(this.responseText) : null;
+    //             if (response) {
+    //                 console.log("Resposta do servidor: ", response);
+    //                 alert("Imagens enviadas com sucesso: " + response.message);
+    //                 return;
+    //             }
+    //             console.log("Resposta do servidor: ", response);
+    //             alert("Problema ao enviar as imagens: " + response.message);
+
+    //         } catch (err) {
+    //             console.error("Erro ao processar resposta!!!!!", err);
+    //         }
+    //     },
+    //     onerror: function(e) {
+    //         console.log("Exception Error caught: " + e.error);
+    //         Ti.API.debug(e.error);
+    //     },
+    //     timeout: 5000 // Timeout em milissegundos
+    // });
 
     sugestaoAI(imagens[0]);
     // let requestObject = {};
@@ -127,6 +133,7 @@ function sugestaoAI($image){
     var client = Ti.Network.createHTTPClient({
         onload:function(e){
             try{
+                console.log("Objeto IA:" + JSON.stringify(e));
                 if (response) {
                     console.log("Resposta da IA: ", response);
                     alert("Imagens enviadas com sucesso à IA: " + response.message);
@@ -142,7 +149,7 @@ function sugestaoAI($image){
 
         },
         onerror:function(e){
-            console.log("Exception Error caught AI: " + e.error);
+            console.log("Exception Error caught AI: " + JSON.stringify(e));
             Ti.API.debug(e.error);
         },
         timeout: 5000
@@ -151,8 +158,10 @@ function sugestaoAI($image){
     let requestObject = {};
 
     requestObject['model_id'] = 1;
-    requestObject['image'] = $image;
+    requestObject['directory'] = 1;
 
+    client.setRequestHeader("Content-Type", "application/json");
+    console.log(JSON.stringify(requestObject));
     client.open("POST", urlAI);
     client.send(requestObject);
 }

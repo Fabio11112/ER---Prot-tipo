@@ -1,6 +1,17 @@
+// Arguments passed into this controller can be accessed via the `$.args` object directly or:
+
+//$.creatureType.open();
+// creatureType.js
+// creatureType.js
+var args = arguments[0] || {};
+var idEspecie = args.idEspecie;
+
+Ti.API.info("ID Específico recebido: " + idEspecie);
+
 
 var url = "https://wave-labs.org/";
-function fetchPage() {
+function fetchPage(idEspecie) {
+    console.log("ID Especie: " + idEspecie);
     let imagem;
     let id;
     let name;
@@ -11,9 +22,9 @@ function fetchPage() {
                 //console.log("Resposta da página " + pageNumber + ":", response);
                 if (response.data && response.data.length > 0) {             
                     response.data.forEach( function(animal){
-                        name = animal.taxa_category;
-                        imagem = animal.image;
-                        id = animal.id;
+                        name = animal.name;
+                        imagem = animal.photos? animal.photos[0].link : "Sem imagem";
+                        id = animal.type?animal.id : "Sem id";
                            console.log(name);
                            console.log(imagem);
                            console.log(id);
@@ -31,17 +42,17 @@ function fetchPage() {
         timeout: 5000 // Timeout em milissegundos
     });
 
-    client.open("GET", url + "api/creature-type");
+    client.open("GET", url + "api/creature?creatureType="+idEspecie);
     
     client.send(); // Enviar requisição GET
 
 }
 
-fetchPage();
+fetchPage(idEspecie);
 
 function fetch_Object(imagem, id, name){
-var url = "https://wave-labs.org/";
-    var imagem_especie = url + imagem;
+var url = "https://wave-labs.org/api/";
+    var imagem_subespecie = url + imagem;
                 var view = Titanium.UI.createView({
                     bottom:20,
                     width: "100%",
@@ -71,14 +82,15 @@ var url = "https://wave-labs.org/";
                     top: 5
                   });
                 var imageView = Ti.UI.createImageView({
-                    image: imagem_especie,
+                    image: imagem_subespecie,
                     width: 140,
                     height: 140,
                     borderRadius: 10
                     
                 });
                 imageView.addEventListener('click', function() {
-                    Alloy.createController('creatureType', { idEspecie: id }).getView().open();
+                    Alloy.createController('especieDetalhe', { idEspecie: id }).getView().open();
+                    alert("Clicou na imagem");
                 });
                 
                 
@@ -87,7 +99,6 @@ var url = "https://wave-labs.org/";
                 $.animalContainer.add(view);
 
         }
-
 
 //TENTATIVA
 function animateAnimal(e) {
@@ -106,4 +117,17 @@ function resetAnimal(e) {
     });
 }
 
+// var url = "https://wave-labs.org/";
 
+
+// function fetchPage(page){
+//     let imagem, id, name;
+
+//     let client = Ti.Network.createHTTPClient({
+//         onload: function(e){},
+//         onerror:function(e){},
+//         timeout:5000
+//     });
+//     client.open("GET", url + "api/creature-type?" + queryString);
+//     client.send();
+//}

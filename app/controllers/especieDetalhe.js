@@ -1,135 +1,129 @@
-// function openAnimalDetails(e) {
-//     var animalName = e.source.id; // Identifica o animal pelo ID
-//     alert("És um  " + animalName);
-//     Alloy.createController('especieDetalhe').getView().open();
-// }
+var args = arguments[0] || {};
+var idEspecie = args.idEspecie;
 
-// var url = "https://wave-labs.org/";
-// function fetchPage(pageNumber) {
-//     let imagem;
-//     let id;
-//     let name;
-//     var client = Ti.Network.createHTTPClient({
-//         onload: function(e) {
-//             try {
-//                 var response = JSON.parse(this.responseText); // Parseia o JSON recebido
-//                 console.log("Resposta da página " + pageNumber + ":", response);
-//                 if (response.data && response.data.length > 0) {             
-//                     response.data.forEach( function(animal){
-//                         name = animal.taxa_category;
-//                         imagem = animal.image ? animal.image : 'Sem foto';
-//                         ---------------------------------------------
-//                         id = animal.id;
-//                            console.log(name);
-//                            console.log(imagem);
-//                            console.log(id);
-//                            fetch_Object(imagem, id, name);
-//                         });    
-//                 if(pageNumber != 7){
-//                     fetchPage(7);
-//                 }
-//             }
-//             } catch (err) {
-//                 console.error("Erro ao processar resposta:", err);
-//             }
-//         },
-//         onerror: function(e) {
-//             Ti.API.debug(e.error);
-//         },
-//         timeout: 5000 // Timeout em milissegundos
-//     });
+Ti.API.info("ID Específico recebido: " + idEspecie);
 
-//     Construir URL com parâmetros de página
-//     var queryString = "page=" + encodeURIComponent(pageNumber);
-//     console.log(queryString);
-//     client.open("GET", url + "api/creature?" + queryString);
-//     client.send(); // Enviar requisição GET
+var url = "https://wave-labs.org/";
 
-// }
+function fetchPage(pageNumber, idEspecie) {
+    var client = Ti.Network.createHTTPClient({
+        onload: function (e) {
+            try {
+                var response = JSON.parse(this.responseText);
 
-// fetchPage(1)
+                if (response.data && response.data.length > 0) {
+                    var filteredAnimals = response.data.filter(animal => animal.id == idEspecie);
+                    filteredAnimals.forEach(function (animal) {
+                        var name = animal.name || "Nome não disponível";
+                        var id = animal.id || 0;
+                        var imagem = animal.photos ? animal.photos[0].link : "Sem foto";
+                        var description = animal.description || "Descrição não disponível";
+                        var curiosity = animal.curiosity || "Curiosidade não disponível";
 
-// function fetch_Object(imagem, id, name){ {
-//     var client = Ti.Network.createHTTPClient({
-//         onload: function(e) {
-//             const imageBlob = this.responseData;
-//             try {
-//                 var view = Titanium.UI.createView({
-//                     bottom:20,
-//                     width: "100%",
-//                     height: 200,
-//                     borderRadius: 10,
-//                     justifyContent: "center",
-//                     alignItems: "center",
-//                     margin: 10,
-//                     borderWidth: 1,
-//                     borderColor: "#ccc",
-//                     animalName: name, // NOME REFERENCIA EVENTO
-//                     id: id,
-                    
-                    
-//                 });
+                        Ti.API.info("Animal encontrado: ", name);
+                        fetch_Object(imagem, id, name, description, curiosity);
+                    });
+                }
 
-//                 view.addEventListener('touchstart', animateAnimal);
-//                 view.addEventListener('touchend', resetAnimal);
-//                 var label1 = Ti.UI.createLabel({
-//                     text: name,
-//                     color: "#000",
-//                     font: {
-//                         fontSize: 18,
-//                         fontWeight: "bold"
-//                     },
-//                     textAlign: "center",
-//                     top: 5
-//                   });
-//                 var imageView = Ti.UI.createImageView({
-//                     image: imageBlob,
-//                     width: 140,
-//                     height: 140,
-//                     borderRadius: 10
-                    
-//                 });
-                
-//                 view.add(imageView); 
-//                 view.add(label1); 
-//                 $.animalContainer.add(view);
-        
-//                 var response = this.responseText; // Parseia o JSON recebido
-//                 console.log("Resposta da página " + pageNumber + ":", response);
-//                 if (response.data && response.data.length > 0) {
-//                    console.log(response)
+                if (pageNumber < 7) {
+                    fetchPage(pageNumber + 1, idEspecie);
+                }
+            } catch (err) {
+                console.error("Erro ao processar resposta:", err);
+            }
+        },
+        onerror: function (e) {
+            Ti.API.debug(e.error);
+            alert("Erro ao buscar dados da API.");
+        },
+        timeout: 5000 
+    });
 
-//                 }
-//             } catch (err) {
-//                 console.error("Erro ao processar resposta!!!!!", err);
-//             }
-//         },
-//         onerror: function(e) {
-//             Ti.API.debug(e.error);
-//         },
-//         timeout: 5000 // Timeout em milissegundos
-//     });
+    var queryString = "page=" + encodeURIComponent(pageNumber);
+    Ti.API.info("Buscando: " + url + "api/creature?" + queryString);
 
-//     client.open("GET", url + "api/" + imagem);
-//     client.send(); // Enviar requisição GET
-// }
-// }
+    client.open("GET", url + "api/creature?" + queryString);
+    client.send();
+}
 
-// TENTATIVA
-// function animateAnimal(e) {
-//     var view = e.source; 
-//     view.animate({
-//         transform: Ti.UI.create2DMatrix().scale(1.1), // AUMENTA IMAGEM
-//         duration: 200 // TEMPO DE DURAÇAO
-//     });
-// }
+fetchPage(1, idEspecie);
 
-// function resetAnimal(e) {
-//     var view = e.source; 
-//     view.animate({
-//         transform: Ti.UI.create2DMatrix().scale(1), 
-//         duration: 200
-//     });
-// }
+function fetch_Object(imagem, id, name, description, curiosity) {
+    var url = "https://wave-labs.org/api/";
+    var imagem_especie = url + imagem;
+    var view = Titanium.UI.createView({
+        bottom: 20,
+        width: "100%",
+        height: 250,
+        borderRadius: 10,
+        justifyContent: "center",
+        alignItems: "center",
+        margin: 10,
+        borderWidth: 1,
+        borderColor: "#ccc",
+        id: id,
+    });
 
+    view.addEventListener("touchstart", animateAnimal);
+    view.addEventListener("touchend", resetAnimal);
 
+    var labelName = Ti.UI.createLabel({
+        text: name,
+        color: "#000",
+        font: { fontSize: 18, fontWeight: "bold" },
+        textAlign: "center",
+        top: 5,
+    });
+
+    var labelDescription = Ti.UI.createLabel({
+        text: "Descrição: \n" + description,
+        color: "#555",
+        font: { fontSize: 14 },
+        textAlign: "center",
+        top: 50,
+        left: 10,
+        right: 10,
+    });
+
+    var labelCuriosity = Ti.UI.createLabel({
+        text: "Curiosidade: \n" + curiosity,
+        color: "#777",
+        font: { fontSize: 14, fontStyle: "italic" },
+        textAlign: "center",
+        top: 100,
+        left: 10,
+        right: 10,
+    });
+
+    var imageView = Ti.UI.createImageView({
+        image: imagem_especie,
+        width: 140,
+        height: 140,
+        borderRadius: 10,
+        top: 130,
+    });
+
+    view.add(labelName);
+    view.add(labelDescription);
+    view.add(labelCuriosity);
+    view.add(imageView);
+
+    $.animalContainer.add(view);
+}
+
+// Funções de Animação
+function animateAnimal(e) {
+    var view = e.source;
+    view.animate({
+        transform: Ti.UI.create2DMatrix().scale(1.1), 
+        duration: 200,
+    });
+}
+
+function resetAnimal(e) {
+    var view = e.source;
+    view.animate({
+        transform: Ti.UI.create2DMatrix().scale(1), 
+        duration: 200,
+    });
+}

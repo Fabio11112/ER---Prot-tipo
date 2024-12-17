@@ -14,10 +14,12 @@ $.btnLogin.addEventListener('click', function () {
     var url = "https://wave-labs.org/";
     var client = Ti.Network.createHTTPClient({
         onload : function(e) {
+            console.log(JSON.stringify(e))
             Ti.API.info("Received text: " + this.responseText);
             alert('success');
         },
         onerror : function(e) {
+            JSON.stringify(e);
             Ti.API.debug(e.error);
             alert('error');
         },

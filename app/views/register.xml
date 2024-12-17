@@ -14,7 +14,7 @@
                     <Label id="senhaLabel" text="Senha"/>
                     <TextField id="passwordField" hintText="Digite sua senha" passwordMask="true" />
                     
-                <Button  id="registerButton" title="Registrar" />
+                <Button  id="registerButton" title="Registar" />
             </View>
         </View>
     </Window>
