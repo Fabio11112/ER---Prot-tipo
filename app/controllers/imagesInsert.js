@@ -1,4 +1,13 @@
 // Arguments passed into this controller can be accessed via the `$.args` object directly or:
+var switchButton = Ti.UI.createSwitch({
+    style: Ti.UI.SWITCH_STYLE_SLIDER,
+    textAlign:Ti.UI.TEXT_ALIGNMENT_CENTER,
+    title:'Metadados',
+    value:false,
+    width: 300, // necessary for textAlign to be effective
+    name: 'switchButton'
+  });
+
 const args = $.args;
 let test_user_id = 1;
 let mime_test = 'image/jpeg';
@@ -70,6 +79,10 @@ $.buttonImage.addEventListener('click', function () {
 function addImagePreview(image){
 
     // Create a new ImageView 
+    if(Object.keys(user).length === 0){
+        user['user'] = {id: 0};
+    }
+
     let imageModel = 
         {
             image: image,
@@ -106,12 +119,14 @@ $.buttonOk.addEventListener('click', onClicked);
 async function onClicked(e) {
     console.log("CLICKED!!!\n");
    
-    if(Object.keys(user).length !== 0){
+    if(Object.keys(user).length !== 0 && switchButton.value){
+        console.log("if");
         let metadadoCreatedId = await criaMetadados(elementos);
         console.log("idddddddddd",metadadoCreatedId);
-        submeterImagem(metadadoCreatedId)
+        submeterImagem(metadadoCreatedId, user.user.id);
     }else{
-        submeterImagem(0)
+        console.log("else");
+        submeterImagem(null, 0)
     }
 
     // var client = Ti.Network.createHTTPClient({
@@ -196,8 +211,8 @@ function sugestaoAI($image){
     client.send(requestObject);
 }
 
-function submeterImagem(metadado_id){
-    console.log("Metado:",metadado_id);
+function submeterImagem(metadado_id, user_id){
+    console.log("Metado:", metadado_id);
     var client = Ti.Network.createHTTPClient({
         onload: function(e) {
             try {
@@ -224,7 +239,7 @@ function submeterImagem(metadado_id){
 
     let requestObject = {};
 
-    requestObject['utilizador_id'] = user.user.id;
+    requestObject['utilizador_id'] = user_id;
     requestObject['mime'] = mime_test;
 
     requestObject['metadado_id'] = metadado_id;
@@ -277,13 +292,14 @@ if (Object.keys(user).length === 0) {
     mainView.add(labelAutenticado);
 
 
-    var switchButton = Ti.UI.createSwitch({
-        style: Ti.UI.SWITCH_STYLE_SLIDER,
-        textAlign:Ti.UI.TEXT_ALIGNMENT_CENTER,
-        title:'Metadados',
-        value:false,
-        width: 300 // necessary for textAlign to be effective
-      });
+    // var switchButton = Ti.UI.createSwitch({
+    //     style: Ti.UI.SWITCH_STYLE_SLIDER,
+    //     textAlign:Ti.UI.TEXT_ALIGNMENT_CENTER,
+    //     title:'Metadados',
+    //     value:false,
+    //     width: 300, // necessary for textAlign to be effective
+    //     name: 'switchButton'
+    //   });
       
 
     $.box.add(switchButton);
@@ -291,7 +307,7 @@ if (Object.keys(user).length === 0) {
     switchButton.addEventListener('change', function (e) {
         console.log(JSON.stringify(e));
 
-        if (e.value === true) {
+        if (e.value) {
             $.formMeta.show();
         }else{
             $.formMeta.hide();
