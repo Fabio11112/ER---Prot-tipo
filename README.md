@@ -1,22 +1,55 @@
-# Welcome to your Titanium SDK Project
 
-This is a blank project.  Start by editing your application's app.js to
-make your first mobile project using Titanium.
+1.Instalação do BackOffice
 
-## Contributing
+    1.1-Repositório do github (Abrir a consola do terminal na localização  C:\Users\(seu nome de utilizador associado)\(Herd)
+    git clone https://github.com/Fabio11112/BackOffice_ER (branch main)
+    //--------------------------------------------
+    Abrir o projeto, o ambiente usado foi visual studio, por isso para abrir diretamente fazer:
+    cd BackOffice_ER
+    code .
+    //--------------------------------------------
+    Necessário instalar o composer , php, o herd e npm.
+    e instalar posteriormente no projeto na consola:
+    ->composer install
+    ->npm install
+    ->herd, tutorial de como instalar: https://www.youtube.com/watch?v=DKnn8TlJ4MA&t=817s&ab_channel=NetNinja
+    Posteriormente de estar realizada a instalação destes componentes:
+    inserir na consola: 
+    qualquer dúvida poderam ver este link, mas para usar o herd realizar os comandos descritos depois do link:
+    https://herd.laravel.com/docs/windows/getting-started/sites#linking-an-existing-site
+    ->herd link
+    ->herd link custom-domain
 
-Titanium is an open source project.  Titanium wouldn't be where it is now without contributions by the community. Please consider forking Titanium to improve, enhance or fix issues. If you feel like the community will benefit from your fork, please open a pull request.
+    Para correr o BackOffice, abrir 2 consolas no mesmo projeto:
+    ->npm run dev (uma correrá este comando, onde será para poder correr o vite, associado ao javaScript e ao estilos)
+    ->php artisan serve (este gerará um url onde conterá um ip do local host e abrir esse url no browser, essencial ser este para ser possível a comunicação entre a app e o backOffice)
 
-To protect the interests of the Titanium contributors, Appcelerator, customers and end users we require contributors to sign a Contributors License Agreement (CLA) before we pull the changes into the main repository. Our CLA is simple and straightforward - it requires that the contributions you make to any Appcelerator open source project are properly licensed and that you have the legal authority to make those changes. This helps us significantly reduce future legal risk for everyone involved. It is easy, helps everyone, takes only a few minutes, and only needs to be completed once.
+    (caso que o último comando no funcione, executar "php -S 127.0.0.1:8000 -t public/" em lugar de php artisan serve)
+ 
 
-[You can digitally sign the CLA](https://github.com/tidev/organization-docs/blob/main/AUTHORIZED_CONTRIBUTORS.md) online. Please indicate your email address in your first pull request so that we can make sure that will locate your CLA.  Once you've submitted it, you no longer need to send one for subsequent submissions.
+Nota 1: no ficheiro de variáveis de ambiente (.env) 
+atualizar a variavel DB_DATABASE para o seu caminho absoluto:
+DB_DATABASE=C:\Users\(para seu nome de user)\Herd\BackOffice_ER\database\database.sqlite
 
-## Stay Connected
+Nota 2: Abrir a página web em 127.0.0.1:8000 e NÃO no link fornecido pelo Herd.
 
-For the latest information, please find us on Twitter: [Titanium SDK](https://twitter.com/titaniumsdk) and [TiDev](https://twitter.com/tidevio).
+2.Instalação do Titanium
+Repositório do github:
+    git clone https://github.com/Fabio11112/ER---Prot-tipo (ir para a branch final_final)
+    2.1-Instalar o titanium    https://downloads.titaniumsdk.com/
+    2.2-Instalar extensão do Titanium no Visual Studio Code
+    2.3-Instalar Node.js
+    2.3-Instalar o android studio   https://developer.android.com/studio?hl=pt-br
+    2.3.1-No Android Studio instalar o SDK Platform Android 14.0 e no SDK Tools o Android Emulatoe
+    2.4-instalar o java jdk 17 https://www.oracle.com/java/technologies/downloads/
+    2.5-criar as variaveis de ambiente de utilizador e de sistema, as duas com o mesmo nome, "JAVA_JDK" com valor igual ao caminho onde se encontra instalado no nosso caso ("c:\\ProgramFiles\Java\jdk-17"). Estas devem ser dentro do "Path"
+    2.6-Executar o comando Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser- (Get-ExecutionPolicy, para verificar se enta em "RemoteSigned")
+    (NOTA:existem em anexo videos relativos a instalaçao do Titanium para uma maior compreensão)
 
-Join our growing Slack community by visiting https://slack.tidev.io
 
-## Legal
+    Para verificar o que pode faltar na instalação, na linha de comandos inserir "ti setup". Depois inserir "k" para ver os elementos instalados e faltantes
 
-Titanium is a registered trademark of TiDev Inc. All Titanium trademark and patent rights were transferred and assigned to TiDev Inc. on 4/7/2022. Please see the LEGAL information about using our trademarks, privacy policy, terms of usage and other legal information at https://tidev.io/legal.
+    https://drive.google.com/file/d/10806LvKXiLRmL5kc05gPl7R4PMW-sPWH/view?usp=sharing -> Video 1
+    https://drive.google.com/file/d/1QGpzSRvo6Mfb9Oc4-fi33qAfanoc9UzK/view?usp=sharing -> Video 2
+    https://youtu.be/obUsQMa79Wg                                                       -> Video 3 
+    
