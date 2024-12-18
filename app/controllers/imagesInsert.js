@@ -336,7 +336,7 @@ function formularioMetadados() {
     // Create a ScrollView
     var scrollView = Ti.UI.createView({
         layout: 'vertical',
-        backgroundColor: 'blue',
+        backgroundColor: '#f8f8f8',
         width: Ti.UI.FILL,
         height: Ti.UI.FILL,
         top: 10

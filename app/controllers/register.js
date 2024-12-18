@@ -22,7 +22,7 @@ $.registerButton.addEventListener('click', function () {
             console.log("Objeto e: "+ JSON.stringify(e));
             Ti.API.info("Received text: " + this.responseText);
             alert("Sucesso");
-            Alloy.createController('index').getView().open();
+            //Alloy.createController('index').getView().open();
         },
         onerror : function(e) {
             if(e.source.responseDictionary == null){
