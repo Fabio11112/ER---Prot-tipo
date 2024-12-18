@@ -22,13 +22,13 @@ $.registerButton.addEventListener('click', function () {
             console.log("Objeto e: "+ JSON.stringify(e));
             Ti.API.info("Received text: " + this.responseText);
             alert("Sucesso");
-            Alloy.createController('login').getView().open();
+            Alloy.createController('index').getView().open();
         },
         onerror : function(e) {
             console.log("Objeto e: "+ JSON.stringify(e));
             Ti.API.debug(e.error);
             alert('Necessário confirmar sua conta, sucesso!');
-            Alloy.createController('login').getView().open();
+            Alloy.createController('index').getView().open();
         },
         timeout : 5000  
     });
