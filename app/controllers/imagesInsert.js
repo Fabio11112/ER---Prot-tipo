@@ -90,10 +90,6 @@ function addImagePreview(image){
             mime: image.mimeType
         };
 
-    
-
-    
-    
     const newImageView = Ti.UI.createImageView({
         image: image,
         width: "80%",
@@ -112,9 +108,6 @@ function addImagePreview(image){
 }
 
 $.buttonOk.addEventListener('click', onClicked);
-
-
-
 
 async function onClicked(e) {
     console.log("CLICKED!!!\n");
@@ -291,7 +284,6 @@ if (Object.keys(user).length === 0) {
     });
     mainView.add(labelAutenticado);
 
-
     // var switchButton = Ti.UI.createSwitch({
     //     style: Ti.UI.SWITCH_STYLE_SLIDER,
     //     textAlign:Ti.UI.TEXT_ALIGNMENT_CENTER,
@@ -334,7 +326,7 @@ function formularioMetadados() {
     // Create a ScrollView
     var scrollView = Ti.UI.createView({
         layout: 'vertical',
-        backgroundColor: '#f8f8f8',
+        backgroundColor: 'blue',
         width: Ti.UI.FILL,
         height: Ti.UI.FILL,
         top: 10
@@ -567,4 +559,3 @@ async function criaMetadados(elementos) {
 // 		console.log("depois DO SEND");
 //     }
 // }
-
