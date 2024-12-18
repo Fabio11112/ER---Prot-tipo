@@ -54,7 +54,7 @@ function fetch_Object(imagem, id, name, description, curiosity) {
     var view = Titanium.UI.createView({
         bottom: 20,
         width: "100%",
-        height: 250,
+        height: 650,
         borderRadius: 10,
         justifyContent: "center",
         alignItems: "center",
@@ -90,17 +90,17 @@ function fetch_Object(imagem, id, name, description, curiosity) {
         color: "#777",
         font: { fontSize: 14, fontStyle: "italic" },
         textAlign: "center",
-        top: 100,
+        top: 155,
         left: 10,
         right: 10,
     });
 
     var imageView = Ti.UI.createImageView({
         image: imagem_especie,
-        width: 140,
-        height: 140,
+        width: "80%",
+        height: 220,
         borderRadius: 10,
-        top: 130,
+        bottom: 100,
     });
 
     view.add(labelName);

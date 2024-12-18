@@ -83,14 +83,13 @@ var url = "https://wave-labs.org/api/";
                   });
                 var imageView = Ti.UI.createImageView({
                     image: imagem_subespecie,
-                    width: 140,
-                    height: 140,
-                    borderRadius: 10
+                    width: 160,
+                    height: 160,
+                    borderRadius: 30
                     
                 });
                 imageView.addEventListener('click', function() {
                     Alloy.createController('especieDetalhe', { idEspecie: id }).getView().open();
-                    alert("Clicou na imagem");
                 });
                 
                 
