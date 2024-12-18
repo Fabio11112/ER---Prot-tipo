@@ -1,15 +1,17 @@
 <Alloy>
 	<Window class="mainWindow">
-		<View id="contentContainer">
+		<ScrollView id="contentContainer">
 			<ImageView id="imageInitial" image="/images/baleialogo/unnamed.png" />
 			<Label id="labelImage">Inserir imagens</Label>
 			<Button id="buttonImage" title="INSERIR" ></Button>
 			<Button id="buttonOk" title="SUBMETER" ></Button>
 			<View id="imagesList">
 			</View>
+			<View id="box"></View>
 			<View id="formMeta">
 			</View>
-		</View>
+
+		</ScrollView>
 		<Require src="footer" />
 	</Window>
 </Alloy>

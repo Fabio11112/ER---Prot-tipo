@@ -2,26 +2,53 @@
 const args = $.args;
 let test_user_id = 1;
 let mime_test = 'image/jpeg';
-let imagens = [];
+let imagem;
 let count = 0;
 
 var user = JSON.parse(Titanium.App.Properties.getString("utilizador")) || {};
 console.log("User: " + JSON.stringify(user));
 
-
+$.formMeta.hide();
 
 let url = "http://10.0.2.2:8000/api/";
 let urlAI = "http://wave-labs.org/api/ai-detection/";
+// $.buttonImage.addEventListener('click', function () {
+
+//     Ti.Media.openPhotoGallery({
+//         allowMultiple: false,
+//         success: function (event) {
+//             console.log(event);
+//             if (event.images) {
+
+//                 event.images.forEach(image => addImagePreview(image));
+
+//             }
+//             else{
+//                 label = Ti.UI.createLabel({
+//                     text: 'Caminho: ' + event.media.nativePath,
+//                     color: '#000',
+//                     font: { fontSize: 20 },
+//                 });
+//                 $.imagesList.add(label);
+//             }
+//         },
+//         error: function (error) {
+//             alert('Erro ao abrir a galeria de fotos: ' + error.code);
+//         },
+//         mediaTypes: [Ti.Media.MEDIA_TYPE_PHOTO]
+//     });
+// });
 
 $.buttonImage.addEventListener('click', function () {
 
     Ti.Media.openPhotoGallery({
-        allowMultiple: true,
+        allowMultiple: false,
         success: function (event) {
             console.log(event);
-            if (event.images) {
-
-                event.images.forEach(image => addImagePreview(image));
+            if (event.media) {
+                console.log("dentro do if");
+                imagem = event.media;
+                addImagePreview(event.media);
 
             }
             else{
@@ -45,23 +72,19 @@ function addImagePreview(image){
     // Create a new ImageView 
     let imageModel = 
         {
-            image: image.media,
-            user_id: test_user_id,
-            mime: image.media.mimeType
+            image: image,
+            user_id: user.user.id,
+            mime: image.mimeType
         };
 
-    let imageBlob = image.media;
-        // images[images[${count}]] = {
-        //     image: imageModelData
-        
-        // };
+    
 
     
-    imagens.push(imageBlob);
+    
     const newImageView = Ti.UI.createImageView({
         image: image,
         width: "80%",
-        height: "20%",
+        height: 170,
         borderColor: '#000',
         borderWidth: 1,
         left: "10%",
@@ -80,11 +103,16 @@ $.buttonOk.addEventListener('click', onClicked);
 
 
 
-function onClicked(e) {
+async function onClicked(e) {
     console.log("CLICKED!!!\n");
-	//alert($.label.text);
-	//Alloy.createController('aceitarSugestao').getView().open();
-
+   
+    if(Object.keys(user).length !== 0){
+        let metadadoCreatedId = await criaMetadados(elementos);
+        console.log("idddddddddd",metadadoCreatedId);
+        submeterImagem(metadadoCreatedId)
+    }else{
+        submeterImagem(0)
+    }
 
     // var client = Ti.Network.createHTTPClient({
         
@@ -110,11 +138,13 @@ function onClicked(e) {
     //     timeout: 5000 // Timeout em milissegundos
     // });
 
-    sugestaoAI(imagens[0]);
     // let requestObject = {};
 
     // requestObject['user_id'] = test_user_id;
     // requestObject['mime'] = mime_test;
+    // // requestObject['metado_id'] = metadadoCreatedId;
+
+
     
     // imagens.forEach((image, index) => {
     //     requestObject[`image[${index}]`] = image;
@@ -166,6 +196,50 @@ function sugestaoAI($image){
     client.send(requestObject);
 }
 
+function submeterImagem(metadado_id){
+    console.log("Metado:",metadado_id);
+    var client = Ti.Network.createHTTPClient({
+        onload: function(e) {
+            try {
+                const response = this.responseText ? JSON.parse(this.responseText) : null;
+                if (response) {
+                    console.log("Resposta do servidor: ", response);
+                    alert("Metadados enviados com sucesso: " + response.message);
+                    return;
+                }
+                console.log("Resposta do servidor: ", response);
+                alert("Problema ao enviar os metadados: " + response.message);
+
+            } catch (err) {
+                console.error("Erro ao processar resposta!!!!!", err);
+            }
+        },
+        onerror: function(e) {
+            console.log("Exception Error caught: " + e.error);
+            Ti.API.debug(e.error);
+            console.log(JSON.stringify(e));
+        },
+        timeout: 5000 // Timeout em milissegundos
+    });
+
+    let requestObject = {};
+
+    requestObject['utilizador_id'] = user.user.id;
+    requestObject['mime'] = mime_test;
+
+    requestObject['metadado_id'] = metadado_id;
+    
+    requestObject['image'] = imagem;
+
+    requestObject['name'] = "nome_imagem";
+    
+
+    console.log(url + "uploadImage");
+
+    client.open("POST", url + "uploadImage");
+    client.send(requestObject); // Enviar requisição GET
+}
+
 
 function fromArrayToJSON(array){
     let json = {};
@@ -176,8 +250,6 @@ function fromArrayToJSON(array){
     console.log(json);
     return json;
 }
-
-
 var mainView = Ti.UI.createView({
     layout: 'vertical',
     backgroundColor: '#f8f8f8'
@@ -196,24 +268,75 @@ if (Object.keys(user).length === 0) {
 
 } else {
     console.log("User autenticado");
-
+    elementos = formularioMetadados();
     var labelAutenticado = Ti.UI.createLabel({
         text: 'Usuário Autenticado',
         color: '#000',
         font: { fontSize: 18 },
-
     });
     mainView.add(labelAutenticado);
 
-        formularioMetadados();
 
+    var switchButton = Ti.UI.createSwitch({
+        style: Ti.UI.SWITCH_STYLE_SLIDER,
+        textAlign:Ti.UI.TEXT_ALIGNMENT_CENTER,
+        title:'Metadados',
+        value:false,
+        width: 300 // necessary for textAlign to be effective
+      });
+      
+
+    $.box.add(switchButton);
+
+    switchButton.addEventListener('change', function (e) {
+        console.log(JSON.stringify(e));
+
+        if (e.value === true) {
+            $.formMeta.show();
+        }else{
+            $.formMeta.hide();
+        }
+    });
+
+
+    // selectBox.add(pickerData);
+    
+    // selectBox.addEventListener('change', function (e) {
+    //     if (e.row.title === 'Sim') {
+    //         $.formMeta.show();
+    //     }else{
+    //         $.formMeta.hide();
+    //     }
+    // });
+    
+    
+    // $.box.add(selectBox);
+    
 }
+
 function formularioMetadados() {
-    var formView = Ti.UI.ScrollView({
-        backgroundColor: '#f8f8f8',
+    // Create a ScrollView
+    var scrollView = Ti.UI.createView({
         layout: 'vertical',
-        width: '100%',
-        showVerticalScrollIndicator: 'true'
+        backgroundColor: '#f8f8f8',
+        width: Ti.UI.FILL,
+        height: Ti.UI.FILL,
+        top: 10
+    });
+    var labelLatitude = Ti.UI.createLabel({ text: 'Latitude:', top: 20, left: 10 });
+    var latitudeField = Ti.UI.createTextField({
+        hintText: 'Digite a latitude',
+        keyboardType: Ti.UI.KEYBOARD_DECIMAL_PAD, // Permite números decimais
+        borderStyle: Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
+        width: '80%', top: 5
+    });
+
+    var labelLongitude = Ti.UI.createLabel({ text: 'Longitude:', top: 20, left: 10 });
+    var longitudeField = Ti.UI.createTextField({
+        hintText: 'Digite a longitude',
+        keyboardType: Ti.UI.KEYBOARD_DECIMAL_PAD, // Permite números decimais
+        borderStyle: Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
+        width: '80%', top: 5
     });
 
     // Elementos do formulário
@@ -221,7 +344,8 @@ function formularioMetadados() {
     var escalaVento = Ti.UI.createTextField({
         hintText: 'Digite a escala do vento',
         borderStyle: Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
-        width: '80%', top: 5
+        width: '80%', top: 5,
+        name: 'escalaVento'
     });
 
     var labelEspecies = Ti.UI.createLabel({ text: 'Número de Espécies Observadas:', top: 20, left: 10 });
@@ -261,32 +385,170 @@ function formularioMetadados() {
         editable: false,
         borderStyle: Ti.UI.INPUT_BORDERSTYLE_ROUNDED,
         width: '80%', top: 5
-    });
+});
 
-    var btnEnviar = Ti.UI.createButton({ title: 'Enviar', top: 20 });
-    btnEnviar.addEventListener('click', function() {
-        alert('Formulário Enviado com Sucesso!');
-        formView.close();
-    });
+    // Adicionando elementos ao ScrollView
+    scrollView.add(labelVento);
+    scrollView.add(escalaVento);
+    scrollView.add(labelEspecies);
+    scrollView.add(numEspecies);
+    scrollView.add(labelCrias);
+    scrollView.add(numCrias);
+    scrollView.add(labelBarco);
+    scrollView.add(tipoBarco);
+    scrollView.add(labelComportamento);
+    scrollView.add(comportamento);
+    scrollView.add(labelData);
+    scrollView.add(dataInicio);
+    scrollView.add(labelLatitude);
+    scrollView.add(latitudeField);
+    scrollView.add(labelLongitude);
+    scrollView.add(longitudeField);
+    $.formMeta.add(scrollView); 
 
-    // Adicionando elementos ao formulário
-    formView.add(labelVento);
-    formView.add(escalaVento);
-    formView.add(labelEspecies);
-    formView.add(numEspecies);
-    formView.add(labelCrias);
-    formView.add(numCrias);
-    formView.add(labelBarco);
-    formView.add(tipoBarco);
-    formView.add(labelComportamento);
-    formView.add(comportamento);
-    formView.add(labelData);
-    formView.add(dataInicio);
-    formView.add(btnEnviar);
+    elements = {
+        escalaVento: escalaVento,
+        numEspecies: numEspecies,
+        numCrias: numCrias,
+        tipoBarco: tipoBarco,
+        comportamento: comportamento,
+        dataInicio: dataInicio,
+        latitudeField: latitudeField,
+        longitudeField: longitudeField
+    }
+    return elements;
+}
+async function criaMetadados(elementos) {
+    console.log("CRIAR Metadados");
 
-    // Abrindo o formulário
-    formView.open();
+    var metadados = {
+        utilizador_id: user.user.id || null,
+        escalaVento: elementos.escalaVento.value || null, 
+        numEspecies: parseInt(elementos.numEspecies.value) || null,
+        numCrias: parseInt(elementos.numCrias.value) || null, 
+        tipoBarco: elementos.tipoBarco.value || null, 
+        comportamento: elementos.comportamento.value || null,
+        dataInicio: elementos.dataInicio.value || null,
+        latitude: elementos.latitudeField.value || null,
+        longitude: elementos.longitudeField.value || null
+    };
+
+    console.log('Metadados:', metadados);
+
+    // Verifica se há dados válidos
+    if ((user.user.id !== null) && (
+        metadados.escalaVento !== null ||
+        metadados.numEspecies !== null ||
+        metadados.numCrias !== null ||
+        metadados.tipoBarco !== null ||
+        metadados.comportamento !== null ||
+        metadados.dataInicio !== null ||
+        metadados.latitude !== null ||
+        metadados.longitude !== null
+    )) {
+        console.log("DENTRO DO IF");
+
+        return new Promise((resolve, reject) => {
+            let url = "http://10.0.2.2:8000/api";
+            let client = Ti.Network.createHTTPClient({
+                onload: function (e) {
+                    console.log("Entrou onload");
+                    try {
+                        let response = JSON.parse(this.responseText);
+                        console.log("Metadado criado com sucesso!");
+                        console.log("ID do metadado criado: ", response.id_metadado);
+
+                        // Resolve a Promise com o ID do metadado
+                        resolve(response.id_metadado);
+                    } catch (err) {
+                        console.error("Erro ao processar resposta:", err);
+                        reject(err); // Rejeita a Promise em caso de erro
+                    }
+                },
+                onerror: function (e) {
+                    console.error("Erro ao inserir metadado: ", e.error);
+                    console.error("Status Code: ", this.status);
+                    console.error("Response Text: ", this.responseText);
+                    reject(e.error); // Rejeita a Promise em caso de erro
+                },
+                timeout: 5000
+            });
+
+            console.log("ANTES DO POST");
+            client.open("POST", url + "/metadado");
+            console.log("DEPOIS DO POST");
+
+            // Envia os dados para o servidor
+            client.send({
+                "beaufourt_scale": metadados.escalaVento,
+                "qnt_avistamentos": metadados.numEspecies,
+                "num_crias": metadados.numCrias,
+                "empresa_barcos": metadados.tipoBarco,
+                "comportamento_especies": metadados.comportamento,
+                "data_hora_avistamento": metadados.dataInicio,
+                "utilizador_id": metadados.utilizador_id,
+                "latitude": metadados.latitude,
+                "longitude": metadados.longitude
+            });
+
+            console.log("DEPOIS DO SEND");
+        });
+    } else {
+        throw new Error("Dados insuficientes para criar metadados.");
+    }
 }
 
-$.formMeta.add(mainView);
+
+// async function criaMetadados(elementos){
+// 	console.log("CRIAR Metados");
+//     var metadados = {
+//         utilizador_id: user.user.id || null,
+//         escalaVento: elementos.escalaVento.value || null, 
+//         numEspecies: parseInt(elementos.numEspecies.value) || null,
+//         numCrias: parseInt(elementos.numCrias.value) || null, 
+//         tipoBarco: elementos.tipoBarco.value || null, 
+//         comportamento: elementos.comportamento.value || null,
+//         dataInicio: elementos.dataInicio.value || null ,
+//         latitude: elementos.latitudeField.value || null,
+//         longitude: elementos.longitudeField.value || null
+//     };
+    
+
+//     console.log('Metadados:', metadados);
+
+//     if((user.user.id!==null)&&(metadados.escalaVento !== null || metadados.numEspecies !== null || metadados.numCrias !== null || metadados.tipoBarco !== null || metadados.comportamento !== null || metadados.dataInicio !== null || metadados.latitude !== null || metadados.longitude !== null)){
+// 		console.log("DENTRO DO IF");
+// 		let url = "http://10.0.2.2:8000/api";
+// 		let client= Ti.Network.createHTTPClient({
+// 			onload: function(e){
+// 				console.log("Entrou onload");
+// 				try{
+//                     let response = JSON.stringify(e)
+// 					console.log(response);
+// 					console.log("Metadado criado com sucesso!");
+//                     console.log("ID do metadado criado: ", e.source.responseDictionary.id_metadado);
+// 				}
+// 				catch(err){
+// 					console.log(JSON.stringify(e));
+// 					console.error("Erro ao processar resposta:", err);
+// 				}
+//                 return e.source.responseDictionary.id_metadado;
+// 			},
+// 			onerror:function(e){
+// 				console.log(JSON.stringify(e));
+// 				Ti.API.debug(e.error);
+// 				console.error("Erro ao inserir metadado: ", e.error);
+// 				console.error("Status Code: ", this.status);
+// 				console.error("Response Text: ", this.responseText);
+// 			},
+// 			timeout:5000
+// 		});
+// 		console.log("ANTES DO POST");
+// 		console.log(url);
+// 		client.open("POST", url + "/metadado");
+// 		console.log("depois DO POST");
+// 		client.send({"beaufourt_scale": metadados.escalaVento, "qnt_avistamentos": metadados.numEspecies, "num_crias": metadados.numCrias, "empresa_barcos": metadados.tipoBarco, "comportamento_especies": metadados.comportamento, "data_hora_avistamento": metadados.dataInicio, "utilizador_id": user.user.id, "latitude": metadados.latitude, "longitude": metadados.longitude});
+// 		console.log("depois DO SEND");
+//     }
+// }
 
