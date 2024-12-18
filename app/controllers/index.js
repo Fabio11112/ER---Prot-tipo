@@ -43,8 +43,23 @@ $.btnLogin.addEventListener('click', function () {
             }       
         },
         onerror: function(e) {
+            console.log(JSON.stringify(e));
             Ti.API.debug(e.error);
-            alert('Problema ao fazer login onerror:' + JSON.stringify(e.source.responseDictionary));
+            errors = e.source.responseDictionary;
+            mensagemErro = "";
+            if(errors.error != undefined){
+                for(let key in errors.error){
+                    console.log(key);
+                    console.log(errors[key]);
+                    mensagemErro += key + ": " + errors.error[key][0] + "\n";
+                }
+            }
+
+            if(mensagemErro.length == 0){
+                mensagemErro = e.message;
+            }
+            
+            alert('Problema ao fazer login:\n' + mensagemErro);
             console.log(JSON.stringify(e));
         },
         timeout : 5000  
@@ -53,7 +68,6 @@ $.btnLogin.addEventListener('click', function () {
     let login = {};
     login['email'] = email;
     login['password'] = password;
-    alert(login);
 
     client.setRequestHeader("Content-Type", "application/json");
     client.open("POST", url + "api/login");

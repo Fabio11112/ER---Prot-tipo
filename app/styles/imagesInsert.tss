@@ -25,11 +25,9 @@
     alignSelf: "center"
 }
 
-
-
 "#imagesList":{
     width: "220dp",
-    height: "220dp",
+    height: "190dp",
     top: "10dp",
     bottom: "100px",
     alignSelf: "center"

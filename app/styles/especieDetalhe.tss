@@ -32,16 +32,17 @@
 },
 "#animalContainer": {
     layout: "vertical",
-    height: Ti.UI.SIZE,
+    height: "90%",
     scrollType: "vertical",
     backgroundColor: "#f7fafc",
     width: "100%",
     padding: "10dp",
-    borderRadius: "10dp"
+    borderRadius: "10dp",
+    top: "10dp"
 },
 ".animalView": {
     width: "100%",
-    height: "150dp",
+    height: "850dp",
     borderRadius: "10dp",
     backgroundColor: "#ffffff",
     justifyContent: "center",
