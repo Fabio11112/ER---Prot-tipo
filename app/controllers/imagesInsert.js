@@ -119,15 +119,21 @@ $.buttonOk.addEventListener('click', onClicked);
 async function onClicked(e) {
     console.log("CLICKED!!!\n");
    
-    if(Object.keys(user).length !== 0 && switchButton.value){
-        if(imagem === null){
-            alert("Por favor, selecione uma imagem!");
-            return;
+    if(Object.keys(user).length !== 0){
+        if(switchButton.value){
+            if(imagem === null){
+                alert("Por favor, selecione uma imagem!");
+                return;
+            }
+            console.log("if");
+            let metadadoCreatedId = await criaMetadados(elementos);
+            console.log("idddddddddd",metadadoCreatedId);
+            submeterImagem(metadadoCreatedId, user.user.id);
+        }else{
+            console.log("else");
+            submeterImagem(null, user.user.id);
         }
-        console.log("if");
-        let metadadoCreatedId = await criaMetadados(elementos);
-        console.log("idddddddddd",metadadoCreatedId);
-        submeterImagem(metadadoCreatedId, user.user.id);
+        
     }else{
         console.log("else");
         submeterImagem(null, 0)
