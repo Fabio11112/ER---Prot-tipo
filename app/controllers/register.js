@@ -25,10 +25,20 @@ $.registerButton.addEventListener('click', function () {
             Alloy.createController('index').getView().open();
         },
         onerror : function(e) {
+            if(e.source.responseDictionary == null){
+                alert("Conta criada com sucesso!\nPor favor, espere a que sua conta seja verificada por alguns dos nossos administradores.");
+                return;
+            }
             console.log("Objeto e: "+ JSON.stringify(e));
+            errors = e.source.responseDictionary.errors;
+            errorMessage = "";
+            for(let key in errors){
+                errorMessage += key + ": " + errors[key][0] + "\n\n";
+            }
+            
             Ti.API.debug(e.error);
-            alert('Necessário confirmar sua conta, sucesso!');
-            Alloy.createController('index').getView().open();
+            alert(errorMessage);
+            //Alloy.createController('index').getView().open();
         },
         timeout : 5000  
     });

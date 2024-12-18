@@ -41,7 +41,7 @@ function logout(e) {
 						Alloy.createController('index').getView().open();
 					}
 					else{
-						alert('Problema ao fazer logout:' + e.error);
+						//alert('Problema ao fazer logout:' + e.error);
 					console.log("Logout NAO FEITO!");
 
 					}
@@ -57,7 +57,7 @@ function logout(e) {
 			console.error("Erro ao fazer logout: ", e.error);
 			console.error("Status Code: ", this.status);
 			console.error("Response Text: ", this.responseText);
-			alert("Erro da API ao fazer Logout: " + e.error);
+			//alert("Erro da API ao fazer Logout: " + e.error);
 			Titanium.App.Properties.removeProperty("utilizador");
 			Alloy.createController('index').getView().open();
 		},

@@ -11,7 +11,7 @@ var switchButton = Ti.UI.createSwitch({
 const args = $.args;
 let test_user_id = 1;
 let mime_test = 'image/jpeg';
-let imagem;
+let imagem = null;
 let count = 0;
 
 var user = JSON.parse(Titanium.App.Properties.getString("utilizador")) || {};
@@ -120,6 +120,10 @@ async function onClicked(e) {
     console.log("CLICKED!!!\n");
    
     if(Object.keys(user).length !== 0 && switchButton.value){
+        if(imagem === null){
+            alert("Por favor, selecione uma imagem!");
+            return;
+        }
         console.log("if");
         let metadadoCreatedId = await criaMetadados(elementos);
         console.log("idddddddddd",metadadoCreatedId);
